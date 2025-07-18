@@ -1,6 +1,6 @@
 <template>
     <div class="nav-menu">
-        <div>Venda finalizada</div>
+        <div>Veja seu histórico!</div>
         <button @click="backToHome">Voltar Home</button>
     </div>
 </template>
