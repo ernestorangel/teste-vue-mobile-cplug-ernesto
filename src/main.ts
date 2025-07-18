@@ -1,14 +1,11 @@
 import { createApp } from 'vue'
-import { createPinia } from 'pinia';
-import setupRouter from './router';
 import './style.css'
 import App from './App.vue'
+import pinia from './store';
+import setupRouter from './router';
 
 const app = createApp(App)
-
-const pinia = createPinia()
 app.use(pinia)
-
 const router = await setupRouter()
 app.use(router)
 
