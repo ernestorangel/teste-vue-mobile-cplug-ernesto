@@ -26,9 +26,12 @@
                         @input="handleSearchInput"
                     />
                     <button 
-                        @click="searchProduct" 
-                        id="product-search-button"
+                        @click="searchProduct"
                         :disabled="!search.length"
+                        :class="[{ 
+                            'product-search-button': cart.length, 
+                            'product-search-button-disabled': !cart.length 
+                        }]"
                     >
                         Buscar
                     </button>
@@ -53,7 +56,7 @@
         </div>
         <div class="cart-container">
             <div class="cart-header-container">
-                <div>Carrinho</div>
+                <div class="cart-header-title">Carrinho</div>
                 <button
                     class="button-text-cancel"
                     @click="clearCart"
@@ -68,19 +71,24 @@
                     :quantity="item.quantity"
                     :price="item.price"
                     :name="item.name"
-                >
-                    {{ item }}
-                </CartItem>
+                />
             </div>
             <div class="cart-actions-container">
                 <div class="cart-summary">
-                    <div class="cart-summary-title">Total</div>
-                    <div class="cart-summary-total">{{ cartTotal }}</div>
+                    <div class="cart-summary-title">
+                        Total
+                    </div>
+                    <div class="cart-summary-total">
+                        {{ cartTotal }}
+                    </div>
                 </div>
                 <div class="cart-actions">
                     <button
                         @click="checkout"
-                        class="button-primary"
+                        :class="[{ 
+                            'button-primary': cart.length, 
+                            'button-primary-disabled': !cart.length 
+                        }]"
                         :disabled="!cart.length"
                     >
                         Finalizar
@@ -163,8 +171,8 @@ function checkout() {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    border-bottom: 1px solid rgb(84, 84, 84);
-    background-color: rgb(52, 52, 52);
+    border-bottom: 1px solid var(--second-blue-light);
+    background-color: var(--second-blue-main);
 }
 .product-grid-header-title-container {
     display: flex;
@@ -186,28 +194,40 @@ function checkout() {
     width: 100%;
     padding: 10px;
     outline: none;
-    border-top: 1px solid #62d3ff;
-    border-left: 1px solid #62d3ff;
-    border-bottom: 1px solid #62d3ff;
+    border-top: 1px solid var(--second-blue-light);
+    border-left: 1px solid var(--second-blue-light);
+    border-bottom: 1px solid var(--second-blue-light);
     border-top-left-radius: 6px;
     border-bottom-left-radius: 6px;
+    background-color: var(--second-blue-main);
 }
-#product-search-button {
+#product-search-input:focus {
+    background-color: var(--second-blue-dark);
+}
+.product-search-button {
     border: 0;
     box-shadow: 0;
     padding: 10px;
-    background-color: #00aff2;
-    border: 1px solid #62d3ff;
+    background-color: var(--second-blue-main);
+    border: 1px solid var(--second-blue-light);
     border-top-right-radius: 6px;
     border-bottom-right-radius: 6px;
     cursor: pointer;
+    transition: ease-in-out;
+    transition-duration: 0.15s;
 }
-#product-search-button:hover {
-  transition: ease-in-out;
-  transition-duration: 0.15s;
-  border: 1px solid #00aff2;
-  color: #00aff2;
-  background-color: rgb(0, 0, 0);
+.product-search-button:hover {
+  background-color: var(--second-blue-light);
+}
+.product-search-button-disabled {
+    border: 0;
+    box-shadow: 0;
+    padding: 10px;
+    background-color: var(--second-blue-main);
+    border: 1px solid var(--second-blue-light);
+    border-top-right-radius: 6px;
+    border-bottom-right-radius: 6px;
+    cursor: pointer;
 }
 .products-grid-container {
     height: calc(100% - 60px);
@@ -232,25 +252,28 @@ function checkout() {
     width: 30%;
     display: flex;
     flex-direction: column;
-    border-left: 1px solid rgb(84, 84, 84);
+    border-left: 1px solid var(--neutral-90);
 }
 .cart-header-container {
     min-height: 60px;
-    padding: 0 10px;
+    padding: 0 20px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 1px solid rgb(84, 84, 84);
-    background-color: rgb(52, 52, 52);
+    border-bottom: 1px solid var(--second-blue-dark);
+    background-color: var(--second-blue-dark);
+}
+.cart-header-title {
+    font-size: 1.2rem;
+    font-weight: 600;
 }
 .cart-content-container {
     height: 100%;
     display: flex;
     flex-direction: column;
-    gap: 10px;
     overflow-y: auto;
-    padding: 10px;
+    background-color: var(--second-blue-dark);
 }
 .cart-actions-container {
     height: 80px;
@@ -259,13 +282,13 @@ function checkout() {
     flex-direction: row;
     justify-content:space-between;
     align-items: center;
-    border-top: 1px solid rgb(84, 84, 84);
-    background-color: rgb(52, 52, 52);
+    border-top: 1px solid var(--neutral-90);
+    background-color: var(--second-blue-light);
 }
 .cart-summary {
     display: flex;
     justify-content: center;
-    align-items: flex-end;
+    align-items: center;
     gap: 8px;
 }
 .cart-summary-title {
