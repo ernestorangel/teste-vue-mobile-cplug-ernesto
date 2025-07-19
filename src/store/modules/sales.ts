@@ -6,16 +6,22 @@ import { getNewSaleId, getTotalFromCartItems, getCurrentDate } from '../../utils
 export const useSalesStore = defineStore('sales', () => {
     const sales = ref<Sale[]>([])
 
+    function getSale(saleId: number) {
+        return sales.value.find((sale) => sale.id === saleId) || {}
+    }
+
     function createSale(items: CartItem[]) {
+        const saleId = getNewSaleId(sales.value)
         const newSale: Sale = {
-            id: getNewSaleId(sales.value),
+            id: saleId,
             items: items,
             total: getTotalFromCartItems(items),
             date: getCurrentDate(),
             status: 'completed'
         }
         sales.value.push(newSale)
+        return saleId
     }
 
-    return { sales, createSale }
+    return { sales, getSale, createSale }
 })

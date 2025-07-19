@@ -1,18 +1,44 @@
 <template>
     <div class="products-page-container">
         <div class="products-container">
-            <div class="product-search-bar">
-                <input
-                    id="product-search-input"
-                    name="product-search"
-                    placeholder="Digite para pesquisar um produto..."
-                />
-                <button id="product-search-button">
-                    Buscar
-                </button>
+            <div class="product-grid-header">
+                <div class="product-grid-header-title-container">
+                    <button 
+                        @click="backToHome"
+                        class="button-secondary"
+                    >
+                        Voltar
+                    </button>
+                    <div class="product-grid-header-title">
+                        Produtos
+                    </div>
+                </div>
+                <div class="product-grid-search">
+                    <input
+                        v-model="search"
+                        type="search"
+                        id="product-search-input"
+                        name="product-search"
+                        placeholder="Digite para pesquisar"
+                        @focusin="isSearchInputFocused = true"
+                        @focusout="isSearchInputFocused = false"
+                        @keydown.enter="isSearchInputFocused ? searchProduct() : ''"
+                        @input="handleSearchInput"
+                    />
+                    <button 
+                        @click="searchProduct" 
+                        id="product-search-button"
+                        :disabled="!search.length"
+                    >
+                        Buscar
+                    </button>
+                </div>
             </div>
             <div class="products-grid-container">
-                <div class="products-grid">
+                <div v-if="isProductsEmpty" class="products-grid-empty">
+                    Nenhum produto encontrado
+                </div>
+                <div v-else class="products-grid">
                     <ProductCard
                         v-for="product in products"
                         :id="product.id"
@@ -22,13 +48,12 @@
                         :description="product.description"
                     />
                 </div>
+                
             </div>
         </div>
         <div class="cart-container">
             <div class="cart-header-container">
-                <button class="button-text-cancel" @click="backToHome">
-                    Cancelar
-                </button>
+                <div>Carrinho</div>
                 <button
                     class="button-text-cancel"
                     @click="clearCart"
@@ -53,7 +78,11 @@
                     <div class="cart-summary-total">{{ cartTotal }}</div>
                 </div>
                 <div class="cart-actions">
-                    <button class="button-primary" @click="finishSale">
+                    <button
+                        @click="checkout"
+                        class="button-primary"
+                        :disabled="!cart.length"
+                    >
                         Finalizar
                     </button>
                 </div>
@@ -68,14 +97,15 @@ import CartItem from '../components/CartItem.vue';
 import { useRouter } from 'vue-router';
 import { useProductsStore } from '../store/modules/products';
 import { useCartStore } from '../store/modules/cart';
-import { computed } from 'vue';
+import { useSalesStore } from '../store/modules/sales';
+import { ref, computed } from 'vue';
 import { formatMoneyFromNumber } from '../utils/helpers';
 
 const router = useRouter();
 
-const products = computed(() => {
-    return useProductsStore().products || []
-})
+const products = ref(useProductsStore().products || [])
+const search = ref('')
+const isSearchInputFocused = ref(false)
 
 const cart = computed(() => {
     return useCartStore().items || []
@@ -85,42 +115,38 @@ const cartTotal = computed(() => {
     return formatMoneyFromNumber(useCartStore().getTotal())
 })
 
+const isProductsEmpty = computed(() => {
+    return !products.value || !products.value.length
+})
+
+function handleSearchInput() {
+    if (search.value === '') searchProduct(); 
+}
+
+function searchProduct() {
+    console.log('search: ', search.value)
+    const results = useProductsStore().search(search.value)
+    console.log('results: ', results)
+    products.value = results
+}
+
 function clearCart() {
     useCartStore().deleteAll()
 }
 
 function backToHome() {
-    router.push('home')
+    router.push('/home')
+    clearCart()
 }
 
-function finishSale() {
-    router.push('success')
+function checkout() {
+    const saleId = useSalesStore().createSale(cart.value)
+    if (saleId) router.push(`success/${saleId}`)
+    clearCart()
 }
 </script>
 
 <style scoped>
-#product-search-input {
-    width: 100%;
-    height: 100%;
-    padding: 20px;
-    font-size: 1rem;
-    outline: none;
-}
-#product-search-button {
-    border: 0;
-    box-shadow: 0;
-    padding: 10px;
-    background-color: #00aff2;
-    border: 1px solid #62d3ff;
-    cursor: pointer;
-}
-#product-search-button:hover {
-  transition: ease-in-out;
-  transition-duration: 0.15s;
-  border: 1px solid #00aff2;
-  color: #00aff2;
-  background-color: rgb(0, 0, 0);
-}
 .products-page-container {
     width: 100%;
     height: 100%;
@@ -131,14 +157,60 @@ function finishSale() {
     width: 70%;
     height: 100%;
 }
-.product-search-bar {
-    height: 40px;
+.product-grid-header {
+    height: 60px;
+    padding: 0 20px;
     display: flex;
-    overflow: hidden;
+    align-items: center;
+    justify-content: space-between;
     border-bottom: 1px solid rgb(84, 84, 84);
+    background-color: rgb(52, 52, 52);
+}
+.product-grid-header-title-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.product-grid-header-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+.product-grid-search {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+#product-search-input {
+    min-width: 220px;
+    width: 100%;
+    padding: 10px;
+    outline: none;
+    border-top: 1px solid #62d3ff;
+    border-left: 1px solid #62d3ff;
+    border-bottom: 1px solid #62d3ff;
+    border-top-left-radius: 6px;
+    border-bottom-left-radius: 6px;
+}
+#product-search-button {
+    border: 0;
+    box-shadow: 0;
+    padding: 10px;
+    background-color: #00aff2;
+    border: 1px solid #62d3ff;
+    border-top-right-radius: 6px;
+    border-bottom-right-radius: 6px;
+    cursor: pointer;
+}
+#product-search-button:hover {
+  transition: ease-in-out;
+  transition-duration: 0.15s;
+  border: 1px solid #00aff2;
+  color: #00aff2;
+  background-color: rgb(0, 0, 0);
 }
 .products-grid-container {
-    height: calc(100% - 40px);
+    height: calc(100% - 60px);
     overflow-y: auto;
 }
 .products-grid {
@@ -148,6 +220,14 @@ function finishSale() {
     gap: 20px;
     padding: 20px;
 }
+.products-grid-empty {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 40px;
+    font-size: 1.2rem;
+    color:#00aff2;
+}
 .cart-container {
     width: 30%;
     display: flex;
@@ -155,13 +235,14 @@ function finishSale() {
     border-left: 1px solid rgb(84, 84, 84);
 }
 .cart-header-container {
-    height: 60px;
+    min-height: 60px;
     padding: 0 10px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
     border-bottom: 1px solid rgb(84, 84, 84);
+    background-color: rgb(52, 52, 52);
 }
 .cart-content-container {
     height: 100%;
@@ -179,6 +260,7 @@ function finishSale() {
     justify-content:space-between;
     align-items: center;
     border-top: 1px solid rgb(84, 84, 84);
+    background-color: rgb(52, 52, 52);
 }
 .cart-summary {
     display: flex;

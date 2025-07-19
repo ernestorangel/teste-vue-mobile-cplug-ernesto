@@ -10,10 +10,10 @@
 import { useRouter } from 'vue-router';
 const router = useRouter();
 function newSale() {
-    router.push('products')
+    router.push('/products')
 }
 function seeSales() {
-    router.push('history')
+    router.push('/history')
 }
 </script>
 
@@ -26,9 +26,9 @@ function seeSales() {
     align-items: center;
     justify-content: center;
     gap: 20px;
-    border: 1px solid red;
 }
 .home-title {
+    font-size: 2rem;
 
 }
 </style>

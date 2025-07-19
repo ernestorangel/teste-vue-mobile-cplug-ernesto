@@ -6,7 +6,7 @@ export const useProductsStore = defineStore('products', () => {
     const products = ref<Product[]>([
         {
             id: 1,
-            name: 'Produto 1',
+            name: 'Produto TESTE',
             price: 19.9,
             image: 'https://images.pexels.com/photos/248412/pexels-photo-248412.jpeg',
             description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris nec luctus purus. Pellentesque malesuada erat at lectus accumsan feugiat. Suspendisse mollis eget lorem in tincidunt. Etiam eu eros hendrerit, tincidunt felis volutpat, ornare eros.',
@@ -61,5 +61,15 @@ export const useProductsStore = defineStore('products', () => {
             category: 'Category 1'
         }
     ])
-    return { products }
+
+    function search(substring: string) {
+        if (!substring) return products.value
+        const matchedProducts = ([...products.value]).filter((prod) => (
+            ((prod.name).toUpperCase()).includes(substring.toUpperCase()) ||
+            ((prod.description).toUpperCase()).includes(substring.toUpperCase())
+        ))
+        return matchedProducts
+    }
+
+    return { products, search }
 })

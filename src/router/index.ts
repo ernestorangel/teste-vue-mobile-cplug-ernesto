@@ -10,7 +10,7 @@ async function setupRouter() {
     { path: '/', redirect: '/home' },
     { path: '/home', name: 'home', component: Home },
     { path: '/products', name: 'products', component: Products },
-    { path: '/success', name: 'success', component: Success },
+    { path: '/success/:saleId', name: 'success', component: Success },
     { path: '/history', name: 'history', component: History },
     { path: '/:pathMatch(.*)*', component: NotFound },
   ];
