@@ -166,7 +166,7 @@ function checkout() {
     height: 100%;
 }
 .product-grid-header {
-    height: 60px;
+    height: 80px;
     padding: 0 20px;
     display: flex;
     align-items: center;
@@ -177,7 +177,7 @@ function checkout() {
 .product-grid-header-title-container {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 20px;
 }
 .product-grid-header-title {
     font-size: 1.2rem;
@@ -234,11 +234,10 @@ function checkout() {
     overflow-y: auto;
 }
 .products-grid {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: 20px;
-    padding: 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 24px;
+    padding: 24px;
 }
 .products-grid-empty {
     width: 100%;

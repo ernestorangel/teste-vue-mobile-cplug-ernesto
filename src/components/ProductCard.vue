@@ -7,15 +7,21 @@
             <div class="product-card-name">
                 {{ props.name }}
             </div>
-            <div class="product-card-description">
+            <div
+                :title="props.description"
+                class="product-card-description"
+            >
                 {{ props.description }}
             </div>
             <div class="product-card-price">
-                {{ props.price }}
+                {{ formatMoneyFromNumber(props.price) }}
             </div>
         </div>
         <div class="product-card-actions">
-            <button @click="addToCart" class="button-secondary">
+            <button 
+                @click="addToCart" 
+                class="add-to-cart-button"
+            >
                 Adicionar ao carrinho
             </button>
         </div>
@@ -24,6 +30,7 @@
 
 <script setup lang="ts">
 import { useCartStore } from '../store/modules/cart';
+import { formatMoneyFromNumber } from '../utils/helpers';
 const props = defineProps([
     'id',
     'name',
@@ -43,13 +50,13 @@ function addToCart() {
 
 <style scoped>
 .product-card-container {
-    width: 220px;
+    width: 100%;
     display: flex;
     flex-direction: column;
-    gap: 8px;
-    border: 1px solid rgb(67, 67, 67);
-    background-color: rgb(47, 47, 47);
-    padding: 10px;
+    gap: 16px;
+    border: 1px solid var(--second-blue-light);
+    background-color: var(--second-blue-main);
+    padding: 24px;
     border-radius: 8px;
 }
 .product-card-image-container {
@@ -59,16 +66,29 @@ function addToCart() {
     place-items: center;
     border-radius: 6px;
 }
+.product-card-info {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
 .product-card-name {
     font-size: 1.2rem;
     font-weight: 600;
 }
 .product-card-description {
-    font-size: 0.75rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    line-clamp: 3; 
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 0.8rem;
     color: gray;
+    text-align: justify;
 }
 .product-card-price {
-    font-size: 0.95rem;
+    font-size: 1.2rem;
+    color: var(--green-light);
 }
 .product-card-actions {
     display: flex;
@@ -85,5 +105,20 @@ function addToCart() {
 }
 .product-card-button:hover {
     background-color: rgb(94, 94, 94)
+}
+.add-to-cart-button {
+    width: 100%;
+    padding: 10px;
+    border-radius: 8px;
+    background-color: var(--second-blue-light);
+    border: 1px solid var(--second-blue-light);
+    font-size: 1rem;
+    cursor: pointer;
+    transition: ease-in-out;
+    transition-duration: 0.15s;
+}
+.add-to-cart-button:hover {
+    background-color: var(--second-blue-dark);
+    border: 1px solid var(--second-blue-dark);
 }
 </style>
