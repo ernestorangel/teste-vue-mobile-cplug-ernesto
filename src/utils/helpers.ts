@@ -15,3 +15,7 @@ export function getTotalFromCartItems(items: CartItem[]) {
 export function getCurrentDate() {
     return new Date()
 }
+
+export function formatMoneyFromNumber(value: number) {
+    return `R$ ${(value || 0.0).toFixed(2)}`
+}

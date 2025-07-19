@@ -1,8 +1,8 @@
 <template>
     <div class="home-menu">
-        <div>Olá, seja bem-vindo!</div>
-        <button @click="newSale">Criar Venda</button>
-        <button @click="seeSales">Listar Vendas</button>
+        <div class="home-title">Olá, seja bem-vindo!</div>
+        <button class="button-primary" @click="newSale">Criar Venda</button>
+        <button class="button-secondary" @click="seeSales">Listar Vendas</button>
     </div>
 </template>
 
@@ -19,8 +19,16 @@ function seeSales() {
 
 <style scoped>
 .home-menu {
+    width: 100%;
+    height: 100%;
     display: flex;
     flex-direction: column;
+    align-items: center;
+    justify-content: center;
     gap: 20px;
+    border: 1px solid red;
+}
+.home-title {
+
 }
 </style>

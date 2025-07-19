@@ -15,7 +15,7 @@
             </div>
         </div>
         <div class="product-card-actions">
-            <button class="product-card-button">
+            <button @click="addToCart" class="button-secondary">
                 Adicionar ao carrinho
             </button>
         </div>
@@ -23,6 +23,7 @@
 </template>
 
 <script setup lang="ts">
+import { useCartStore } from '../store/modules/cart';
 const props = defineProps([
     'id',
     'name',
@@ -30,6 +31,14 @@ const props = defineProps([
     'image',
     'description'
 ])
+function addToCart() {
+    useCartStore().addItem({
+        productId: props.id,
+        quantity: 1,
+        price: props.price,
+        name: props.name
+    })
+}
 </script>
 
 <style scoped>
@@ -62,7 +71,10 @@ const props = defineProps([
     font-size: 0.95rem;
 }
 .product-card-actions {
-    border-top: 1px solid rgb(67, 67, 67);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
     padding-top: 5px;
 }
 .product-card-button {
