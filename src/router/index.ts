@@ -1,9 +1,10 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import Home from '@/views/Home.vue';
-import Products from '@/views/Products.vue';
-import Success from '@/views/Success.vue';
-import NotFound from '@/views/NotFound.vue';
-import History from '@/views/History.vue';
+
+const Home = () => import('@/views/Home.vue');
+const Products = () => import('@/views/Products.vue');
+const Success = () => import('@/views/Success.vue');
+const NotFound = () => import('@/views/NotFound.vue'); 
+const History = () => import('@/views/History.vue'); 
 
 async function setupRouter() {
   const routes = [
