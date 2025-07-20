@@ -17,7 +17,7 @@ export const useProductsStore = defineStore('products', () => {
             name: 'Produto 2',
             price: 39.9,
             image: 'https://images.pexels.com/photos/248412/pexels-photo-248412.jpeg',
-            description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris nec luctus purus. Pellentesque malesuada erat at lectus accumsan feugiat. Suspendisse mollis eget lorem in tincidunt. Etiam eu eros hendrerit, tincidunt felis volutpat, ornare eros.',
+            description: 'Lorem ipsum maçã dolor sit amet, consectetur adipiscing elit. Mauris nec luctus purus. Pellentesque malesuada erat at lectus accumsan feugiat. Suspendisse mollis eget lorem in tincidunt. Etiam eu eros hendrerit, tincidunt felis volutpat, ornare eros.',
             category: 'Category 2'
         },
         {
