@@ -1,75 +1,476 @@
-import { defineStore } from 'pinia'
-import type { Product } from '../../types'
-import { ref } from 'vue'
+import { defineStore } from 'pinia';
+import type { Product } from '../../types';
+import { ref } from 'vue';
 
 export const useProductsStore = defineStore('products', () => {
-    const products = ref<Product[]>([
-        {
-            id: 1,
-            name: 'Produto TESTE',
-            price: 19.9,
-            image: 'https://images.pexels.com/photos/248412/pexels-photo-248412.jpeg',
-            description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris nec luctus purus. Pellentesque malesuada erat at lectus accumsan feugiat. Suspendisse mollis eget lorem in tincidunt. Etiam eu eros hendrerit, tincidunt felis volutpat, ornare eros.',
-            category: 'Category 1'
-        },
-        {
-            id: 2,
-            name: 'Produto 2',
-            price: 39.9,
-            image: 'https://images.pexels.com/photos/248412/pexels-photo-248412.jpeg',
-            description: 'Lorem ipsum maçã dolor sit amet, consectetur adipiscing elit. Mauris nec luctus purus. Pellentesque malesuada erat at lectus accumsan feugiat. Suspendisse mollis eget lorem in tincidunt. Etiam eu eros hendrerit, tincidunt felis volutpat, ornare eros.',
-            category: 'Category 2'
-        },
-        {
-            id: 3,
-            name: 'Produto 3',
-            price: 22.5,
-            image: 'https://images.pexels.com/photos/248412/pexels-photo-248412.jpeg',
-            description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris nec luctus purus. Pellentesque malesuada erat at lectus accumsan feugiat. Suspendisse mollis eget lorem in tincidunt. Etiam eu eros hendrerit, tincidunt felis volutpat, ornare eros.',
-            category: 'Category 3'
-        },
-        {
-            id: 4,
-            name: 'Produto 4',
-            price: 17.5,
-            image: 'https://images.pexels.com/photos/248412/pexels-photo-248412.jpeg',
-            description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris nec luctus purus. Pellentesque malesuada erat at lectus accumsan feugiat. Suspendisse mollis eget lorem in tincidunt. Etiam eu eros hendrerit, tincidunt felis volutpat, ornare eros.',
-            category: 'Category 2'
-        },
-        {
-            id: 5,
-            name: 'Produto 5',
-            price: 92.2,
-            image: 'https://images.pexels.com/photos/248412/pexels-photo-248412.jpeg',
-            description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris nec luctus purus. Pellentesque malesuada erat at lectus accumsan feugiat. Suspendisse mollis eget lorem in tincidunt. Etiam eu eros hendrerit, tincidunt felis volutpat, ornare eros.',
-            category: 'Category 1'
-        },
-        {
-            id: 6,
-            name: 'Produto 6',
-            price: 34.5,
-            image: 'https://images.pexels.com/photos/248412/pexels-photo-248412.jpeg',
-            description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris nec luctus purus. Pellentesque malesuada erat at lectus accumsan feugiat. Suspendisse mollis eget lorem in tincidunt. Etiam eu eros hendrerit, tincidunt felis volutpat, ornare eros.',
-            category: 'Category 2'
-        },
-        {
-            id: 7,
-            name: 'Produto 7',
-            price: 74.6,
-            image: 'https://images.pexels.com/photos/248412/pexels-photo-248412.jpeg',
-            description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris nec luctus purus. Pellentesque malesuada erat at lectus accumsan feugiat. Suspendisse mollis eget lorem in tincidunt. Etiam eu eros hendrerit, tincidunt felis volutpat, ornare eros.',
-            category: 'Category 1'
-        }
-    ])
+  const products = ref<Product[]>([
+    // {
+    //     id: 1,
+    //     name: 'Produto TESTE',
+    //     price: 19.9,
+    //     image: 'https://images.pexels.com/photos/248412/pexels-photo-248412.jpeg',
+    //     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris nec luctus purus. Pellentesque malesuada erat at lectus accumsan feugiat. Suspendisse mollis eget lorem in tincidunt. Etiam eu eros hendrerit, tincidunt felis volutpat, ornare eros.',
+    //     category: 'Category 1'
+    // },
+    // {
+    //     id: 2,
+    //     name: 'Produto 2',
+    //     price: 39.9,
+    //     image: 'https://images.pexels.com/photos/248412/pexels-photo-248412.jpeg',
+    //     description: 'Lorem ipsum maçã dolor sit amet, consectetur adipiscing elit. Mauris nec luctus purus. Pellentesque malesuada erat at lectus accumsan feugiat. Suspendisse mollis eget lorem in tincidunt. Etiam eu eros hendrerit, tincidunt felis volutpat, ornare eros.',
+    //     category: 'Category 2'
+    // },
+    // {
+    //     id: 3,
+    //     name: 'Produto 3',
+    //     price: 22.5,
+    //     image: 'https://images.pexels.com/photos/248412/pexels-photo-248412.jpeg',
+    //     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris nec luctus purus. Pellentesque malesuada erat at lectus accumsan feugiat. Suspendisse mollis eget lorem in tincidunt. Etiam eu eros hendrerit, tincidunt felis volutpat, ornare eros.',
+    //     category: 'Category 3'
+    // },
+    // {
+    //     id: 4,
+    //     name: 'Produto 4',
+    //     price: 17.5,
+    //     image: 'https://images.pexels.com/photos/248412/pexels-photo-248412.jpeg',
+    //     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris nec luctus purus. Pellentesque malesuada erat at lectus accumsan feugiat. Suspendisse mollis eget lorem in tincidunt. Etiam eu eros hendrerit, tincidunt felis volutpat, ornare eros.',
+    //     category: 'Category 2'
+    // },
+    // {
+    //     id: 5,
+    //     name: 'Produto 5',
+    //     price: 92.2,
+    //     image: 'https://images.pexels.com/photos/248412/pexels-photo-248412.jpeg',
+    //     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris nec luctus purus. Pellentesque malesuada erat at lectus accumsan feugiat. Suspendisse mollis eget lorem in tincidunt. Etiam eu eros hendrerit, tincidunt felis volutpat, ornare eros.',
+    //     category: 'Category 1'
+    // },
+    // {
+    //     id: 6,
+    //     name: 'Produto 6',
+    //     price: 34.5,
+    //     image: 'https://images.pexels.com/photos/248412/pexels-photo-248412.jpeg',
+    //     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris nec luctus purus. Pellentesque malesuada erat at lectus accumsan feugiat. Suspendisse mollis eget lorem in tincidunt. Etiam eu eros hendrerit, tincidunt felis volutpat, ornare eros.',
+    //     category: 'Category 2'
+    // },
+    // {
+    //     id: 7,
+    //     name: 'Produto 7',
+    //     price: 74.6,
+    //     image: 'https://images.pexels.com/photos/248412/pexels-photo-248412.jpeg',
+    //     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris nec luctus purus. Pellentesque malesuada erat at lectus accumsan feugiat. Suspendisse mollis eget lorem in tincidunt. Etiam eu eros hendrerit, tincidunt felis volutpat, ornare eros.',
+    //     category: 'Category 1'
+    // }
+    {
+      id: 1,
+      name: 'Relógio Elegante',
+      price: 199.9,
+      image: 'https://images.pexels.com/photos/190819/pexels-photo-190819.jpeg',
+      description: 'Relógio de pulso com design moderno e mostrador minimalista.',
+      category: 'Acessórios',
+    },
+    {
+      id: 2,
+      name: 'Câmera Clássica',
+      price: 349.5,
+      image: 'https://images.pexels.com/photos/274973/pexels-photo-274973.jpeg',
+      description: 'Câmera fotográfica analógica clássica para entusiastas.',
+      category: 'Fotografia',
+    },
+    {
+      id: 3,
+      name: 'Caneca Gourmet',
+      price: 29.9,
+      image: 'https://images.pexels.com/photos/414645/pexels-photo-414645.jpeg',
+      description: 'Caneca de cerâmica com design anatômico e estampa artística.',
+      category: 'Cozinha',
+    },
+    {
+      id: 4,
+      name: 'Smartphone Premium',
+      price: 1499.99,
+      image: 'https://images.pexels.com/photos/406589/pexels-photo-406589.jpeg',
+      description: 'Smartphone com câmera avançada e tela de alta resolução.',
+      category: 'Eletrônicos',
+    },
+    {
+      id: 5,
+      name: 'Fones de Ouvido Bluetooth',
+      price: 249.0,
+      image: 'https://images.pexels.com/photos/339465/pexels-photo-339465.jpeg',
+      description: 'Fones sem fio com isolamento de ruído e bateria de longa duração.',
+      category: 'Eletrônicos',
+    },
+    {
+      id: 6,
+      name: 'Copo Térmico',
+      price: 59.9,
+      image: 'https://images.pexels.com/photos/414630/pexels-photo-414630.jpeg',
+      description: 'Copo térmico de aço inox mantendo a bebida quente.',
+      category: 'Cozinha',
+    },
+    {
+      id: 7,
+      name: 'Óculos de Sol Estiloso',
+      price: 129.9,
+      image: 'https://images.pexels.com/photos/46710/pexels-photo-46710.jpeg',
+      description: 'Óculos de sol com lentes polarizadas e design moderno.',
+      category: 'Acessórios',
+    },
+    {
+      id: 8,
+      name: 'Garrafas de Água',
+      price: 39.9,
+      image: 'https://images.pexels.com/photos/459225/pexels-photo-459225.jpeg',
+      description: 'Garrafa reutilizável em aço inox, à prova de vazamentos.',
+      category: 'Fitness',
+    },
+    {
+      id: 9,
+      name: 'Notebook Branco',
+      price: 2599.0,
+      image: 'https://images.pexels.com/photos/18105/pexels-photo.jpg',
+      description: 'Notebook leve e potente, ideal para produtividade.',
+      category: 'Eletrônicos',
+    },
+    {
+      id: 10,
+      name: 'Bloco de Notas',
+      price: 24.9,
+      image: 'https://images.pexels.com/photos/210661/pexels-photo-210661.jpeg',
+      description: 'Caderno de anotações com capa dura e folhas pontilhadas.',
+      category: 'Papelaria',
+    },
+    {
+      id: 11,
+      name: 'Caneta Preta Premium',
+      price: 9.9,
+      image: 'https://images.pexels.com/photos/209172/pexels-photo-209172.jpeg',
+      description: 'Caneta de gel com escrita suave e tinta durável.',
+      category: 'Papelaria',
+    },
+    {
+      id: 12,
+      name: 'Livro de Culinária',
+      price: 79.0,
+      image: 'https://images.pexels.com/photos/4050315/pexels-photo-4050315.jpeg',
+      description: 'Receitas práticas e saudáveis para o dia a dia.',
+      category: 'Livros',
+    },
+    {
+      id: 13,
+      name: 'Fita de Yoga',
+      price: 89.9,
+      image: 'https://images.pexels.com/photos/317157/pexels-photo-317157.jpeg',
+      description: 'Tapete antiderrapante para yoga e pilates.',
+      category: 'Fitness',
+    },
+    {
+      id: 14,
+      name: 'Mouse Ergonômico',
+      price: 149.9,
+      image: 'https://images.pexels.com/photos/393717/pexels-photo-393717.jpeg',
+      description: 'Mouse sem fio design ergonômico ideal para longas jornadas.',
+      category: 'Eletrônicos',
+    },
+    {
+      id: 15,
+      name: 'Teclado Mecânico',
+      price: 499.0,
+      image: 'https://images.pexels.com/photos/1714208/pexels-photo-1714208.jpeg',
+      description: 'Teclado mecânico com iluminação RGB e teclas táteis.',
+      category: 'Eletrônicos',
+    },
+    {
+      id: 16,
+      name: 'Relógio Smartwatch',
+      price: 799.0,
+      image: 'https://images.pexels.com/photos/267394/pexels-photo-267394.jpeg',
+      description: 'Smartwatch com monitor de frequência cardíaca e notificações.',
+      category: 'Eletrônicos',
+    },
+    {
+      id: 17,
+      name: 'Pulseira Fitness',
+      price: 189.9,
+      image: 'https://images.pexels.com/photos/190817/pexels-photo-190817.jpeg',
+      description: 'Pulseira para monitoramento de atividades físicas.',
+      category: 'Fitness',
+    },
+    {
+      id: 18,
+      name: 'Almofada Decorativa',
+      price: 79.9,
+      image: 'https://images.pexels.com/photos/271816/pexels-photo-271816.jpeg',
+      description: 'Almofada com capa lavável, ideal para decoração.',
+      category: 'Casa',
+    },
+    {
+      id: 19,
+      name: 'Luminária de Mesa',
+      price: 129.9,
+      image: 'https://images.pexels.com/photos/271795/pexels-photo-271795.jpeg',
+      description: 'Luminária LED com ajuste de intensidade.',
+      category: 'Casa',
+    },
+    {
+      id: 20,
+      name: 'Fone de Ouvido Over-Ear',
+      price: 359.9,
+      image: 'https://images.pexels.com/photos/374870/pexels-photo-374870.jpeg',
+      description: 'Fones confortáveis com som estéreo potente.',
+      category: 'Eletrônicos',
+    },
+    {
+      id: 21,
+      name: 'Capinha para Celular',
+      price: 49.9,
+      image: 'https://images.pexels.com/photos/607812/pexels-photo-607812.jpeg',
+      description: 'Capinha resistente com design emborrachado.',
+      category: 'Acessórios',
+    },
+    {
+      id: 22,
+      name: 'Teclado Bluetooth',
+      price: 249.9,
+      image: 'https://images.pexels.com/photos/509920/pexels-photo-509920.jpeg',
+      description: 'Teclado slim compatível com múltiplos dispositivos.',
+      category: 'Eletrônicos',
+    },
+    {
+      id: 23,
+      name: 'Câmera de Ação',
+      price: 899.9,
+      image: 'https://images.pexels.com/photos/276514/pexels-photo-276514.jpeg',
+      description: 'Câmera resistente para esportes e aventura.',
+      category: 'Fotografia',
+    },
+    {
+      id: 24,
+      name: 'Travesseiro Ortopédico',
+      price: 159.9,
+      image: 'https://images.pexels.com/photos/4458/desk-office-workspace-interior.jpg',
+      description: 'Travesseiro para alívio de dores cervicais.',
+      category: 'Casa',
+    },
+    {
+      id: 25,
+      name: 'Mochila Casual',
+      price: 299.9,
+      image: 'https://images.pexels.com/photos/414555/pexels-photo-414555.jpeg',
+      description: 'Mochila com vários compartimentos e material resistente.',
+      category: 'Acessórios',
+    },
+    {
+      id: 26,
+      name: 'Bolsa Feminina',
+      price: 499.9,
+      image: 'https://images.pexels.com/photos/375652/pexels-photo.jpg',
+      description: 'Bolsa de couro sintético com design elegante.',
+      category: 'Acessórios',
+    },
+    {
+      id: 27,
+      name: 'Tênis Esportivo',
+      price: 359.9,
+      image: 'https://images.pexels.com/photos/2529148/pexels-photo-2529148.jpeg',
+      description: 'Tênis leve e respirável para corrida.',
+      category: 'Fitness',
+    },
+    {
+      id: 28,
+      name: 'Câmera DSLR',
+      price: 2499.9,
+      image: 'https://images.pexels.com/photos/51383/pexels-photo-51383.jpeg',
+      description: 'Câmera profissional com múltiplas lentes.',
+      category: 'Fotografia',
+    },
+    {
+      id: 29,
+      name: 'Livro Infantil',
+      price: 39.9,
+      image: 'https://images.pexels.com/photos/256532/pexels-photo-256532.jpeg',
+      description: 'História ilustrada para crianças pequenas.',
+      category: 'Livros',
+    },
+    {
+      id: 30,
+      name: 'Webcam HD',
+      price: 279.9,
+      image: 'https://images.pexels.com/photos/414519/pexels-photo-414519.jpeg',
+      description: 'Webcam com microfone embutido e resolução Full HD.',
+      category: 'Eletrônicos',
+    },
+    {
+      id: 31,
+      name: 'Microfone Condensador',
+      price: 499.9,
+      image: 'https://images.pexels.com/photos/574076/pexels-photo-574076.jpeg',
+      description: 'Microfone de estúdio para gravação de voz.',
+      category: 'Eletrônicos',
+    },
+    {
+      id: 32,
+      name: 'Headset Gamer',
+      price: 599.9,
+      image: 'https://images.pexels.com/photos/1591060/pexels-photo-1591060.jpeg',
+      description: 'Headset com som surround e microfone.',
+      category: 'Eletrônicos',
+    },
+    {
+      id: 33,
+      name: 'Lente para Smartphone',
+      price: 299.9,
+      image: 'https://images.pexels.com/photos/63571/pexels-photo-63571.jpeg',
+      description: 'Lente teleobjetiva para fotos com celular.',
+      category: 'Fotografia',
+    },
+    {
+      id: 34,
+      name: 'Caderno de Viagem',
+      price: 59.9,
+      image: 'https://images.pexels.com/photos/210661.jpeg',
+      description: 'Caderno compacto para anotações em deslocamento.',
+      category: 'Papelaria',
+    },
+    {
+      id: 35,
+      name: 'Bateria Portátil',
+      price: 129.9,
+      image: 'https://images.pexels.com/photos/399438/pexels-photo-399438.jpeg',
+      description: 'Power bank com carregamento rápido e USB-C.',
+      category: 'Eletrônicos',
+    },
+    {
+      id: 36,
+      name: 'Carregador Sem Fio',
+      price: 89.9,
+      image: 'https://images.pexels.com/photos/607812.jpeg',
+      description: 'Base de carregamento Qi para celulares compatíveis.',
+      category: 'Eletrônicos',
+    },
+    {
+      id: 37,
+      name: 'Fita Adesiva Decorativa',
+      price: 19.9,
+      image: 'https://images.pexels.com/photos/1726503/pexels-photo-1726503.jpeg',
+      description: 'Washi tape com estampas variadas para cadernos.',
+      category: 'Papelaria',
+    },
+    {
+      id: 38,
+      name: 'Cadeira de Escritório',
+      price: 899.9,
+      image: 'https://images.pexels.com/photos/155907/pexels-photo-155907.jpeg',
+      description: 'Cadeira ergonômica com suporte lombar ajustável.',
+      category: 'Móveis',
+    },
+    {
+      id: 39,
+      name: 'Teclado Gamer RGB',
+      price: 749.9,
+      image: 'https://images.pexels.com/photos/57690/pexels-photo-57690.jpeg',
+      description: 'Teclado com switches mecânicos e iluminação personalizável.',
+      category: 'Eletrônicos',
+    },
+    {
+      id: 40,
+      name: 'Cabo USB-C',
+      price: 39.9,
+      image: 'https://images.pexels.com/photos/257736/pexels-photo-257736.jpeg',
+      description: 'Cabo reforçado para transferência e carregamento rápido.',
+      category: 'Eletrônicos',
+    },
+    {
+      id: 41,
+      name: 'Bolsa Térmica',
+      price: 129.9,
+      image: 'https://images.pexels.com/photos/376320/pexels-photo-376320.jpeg',
+      description: 'Bolsa isotérmica para manter alimentos frios/quentes.',
+      category: 'Cozinha',
+    },
+    {
+      id: 42,
+      name: 'Tapete de Yoga',
+      price: 159.9,
+      image: 'https://images.pexels.com/photos/317157.jpeg',
+      description: 'Tapete antiderrapante para práticas de yoga.',
+      category: 'Fitness',
+    },
+    {
+      id: 43,
+      name: 'Bloco de Notas Adesivas',
+      price: 24.9,
+      image: 'https://images.pexels.com/photos/733856/pexels-photo-733856.jpeg',
+      description: 'Post‑it colorido para organização visual.',
+      category: 'Papelaria',
+    },
+    {
+      id: 44,
+      name: 'Mala de Viagem',
+      price: 1299.9,
+      image: 'https://images.pexels.com/photos/631160/pexels-photo-631160.jpeg',
+      description: 'Mala rígida com rodas 360° e cadeado embutido.',
+      category: 'Acessórios',
+    },
+    {
+      id: 45,
+      name: 'Toldo Portátil',
+      price: 499.9,
+      image: 'https://images.pexels.com/photos/33109/pexels-photo.jpg',
+      description: 'Toldo dobrável para camping e praia.',
+      category: 'Ao ar livre',
+    },
+    {
+      id: 46,
+      name: 'Kit de Pintura',
+      price: 199.9,
+      image: 'https://images.pexels.com/photos/207056/pexels-photo-207056.jpeg',
+      description: 'Tinta acrílica com pincéis variados.',
+      category: 'Artes',
+    },
+    {
+      id: 47,
+      name: 'Jogo de Xícaras',
+      price: 129.9,
+      image: 'https://images.pexels.com/photos/1437267/pexels-photo-1437267.jpeg',
+      description: 'Conjunto de xícaras de porcelana com pires.',
+      category: 'Cozinha',
+    },
+    {
+      id: 48,
+      name: 'Incenso Relaxante',
+      price: 49.9,
+      image: 'https://images.pexels.com/photos/1689711/pexels-photo-1689711.jpeg',
+      description: 'Incenso aromático para momentos de meditação.',
+      category: 'Bem-estar',
+    },
+    {
+      id: 49,
+      name: 'Almofada de Pescoço',
+      price: 89.9,
+      image: 'https://images.pexels.com/photos/229435/pexels-photo-229435.jpeg',
+      description: 'Almofada de viagem com espuma de memória.',
+      category: 'Viagem',
+    },
+    {
+      id: 50,
+      name: 'Pulseira de Couro',
+      price: 79.9,
+      image: 'https://images.pexels.com/photos/267394.jpeg',
+      description: 'Pulseira masculina de couro com fecho metálico.',
+      category: 'Acessórios',
+    },
+  ]);
 
-    function search(substring: string) {
-        if (!substring) return products.value
-        const matchedProducts = ([...products.value]).filter((prod) => (
-            ((prod.name).toUpperCase()).includes(substring.toUpperCase()) ||
-            ((prod.description).toUpperCase()).includes(substring.toUpperCase())
-        ))
-        return matchedProducts
-    }
+  function search(substring: string) {
+    if (!substring) return products.value;
+    const matchedProducts = [...products.value].filter(
+      (prod) =>
+        prod.name.toUpperCase().includes(substring.toUpperCase()) ||
+        prod.description.toUpperCase().includes(substring.toUpperCase())
+    );
+    return matchedProducts;
+  }
 
-    return { products, search }
-})
+  return { products, search };
+});

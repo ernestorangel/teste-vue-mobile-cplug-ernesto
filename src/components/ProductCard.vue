@@ -1,125 +1,111 @@
 <template>
-    <div class="product-card-container">
-        <div class="product-card-image-container">
-            <img :src="props.image" width="100%" />
-        </div>
-        <div class="product-card-info">
-            <div class="product-card-name">
-                {{ props.name }}
-            </div>
-            <div
-                :title="props.description"
-                class="product-card-description"
-            >
-                {{ props.description }}
-            </div>
-            <div class="product-card-price">
-                {{ formatMoneyFromNumber(props.price) }}
-            </div>
-        </div>
-        <div class="product-card-actions">
-            <button 
-                @click="addToCart" 
-                class="add-to-cart-button"
-            >
-                Adicionar ao carrinho
-            </button>
-        </div>
+  <div class="product-card-container">
+    <div class="product-card-image-container">
+      <img :src="props.image" width="100%" />
     </div>
+    <div class="product-card-info">
+      <div class="product-card-name">
+        {{ props.name }}
+      </div>
+      <div :title="props.description" class="product-card-description">
+        {{ props.description }}
+      </div>
+      <div class="product-card-price">
+        {{ formatMoneyFromNumber(props.price) }}
+      </div>
+    </div>
+    <div class="product-card-actions">
+      <button @click="addToCart" class="add-to-cart-button">Adicionar ao carrinho</button>
+    </div>
+  </div>
 </template>
 
 <script setup lang="ts">
 import { useCartStore } from '../store/modules/cart';
 import { formatMoneyFromNumber } from '../utils/helpers';
-const props = defineProps([
-    'id',
-    'name',
-    'price',
-    'image',
-    'description'
-])
+const props = defineProps(['id', 'name', 'price', 'image', 'description']);
 function addToCart() {
-    useCartStore().addItem({
-        productId: props.id,
-        quantity: 1,
-        price: props.price,
-        name: props.name
-    })
+  useCartStore().addItem({
+    productId: props.id,
+    quantity: 1,
+    price: props.price,
+    name: props.name,
+  });
 }
 </script>
 
 <style scoped>
 .product-card-container {
-    width: 100%;
-    max-width: 280px;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    /* border: 1px solid var(--second-blue-light);
+  width: 100%;
+  max-width: 280px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  /* border: 1px solid var(--second-blue-light);
     background-color: var(--second-blue-main); */
-    padding: 24px;
-    border-radius: 8px;
+  padding: 24px;
+  border-radius: 8px;
 }
 .product-card-image-container {
-    width: 100%;
-    height: 180px;
-    overflow: hidden;
-    place-items: center;
-    border-radius: 6px;
+  width: 100%;
+  height: 180px;
+  overflow: hidden;
+  place-items: center;
+  border-radius: 6px;
 }
 .product-card-info {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 .product-card-name {
-    font-size: 1.2rem;
-    font-weight: 600;
+  font-size: 1.2rem;
+  font-weight: 600;
 }
 .product-card-description {
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    line-clamp: 3; 
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    font-size: 0.8rem;
-    color: gray;
-    text-align: justify;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 0.8rem;
+  color: gray;
+  text-align: justify;
 }
 .product-card-price {
-    font-size: 1.2rem;
-    color: var(--green-light);
+  font-size: 1.2rem;
+  color: var(--green-light);
 }
 .product-card-actions {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    padding-top: 5px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding-top: 5px;
 }
 .product-card-button {
-    width: 100%;
-    height: 100%;
-    border-radius: 4px;
-    cursor: pointer;
+  width: 100%;
+  height: 100%;
+  border-radius: 4px;
+  cursor: pointer;
 }
 .product-card-button:hover {
-    background-color: rgb(94, 94, 94)
+  background-color: rgb(94, 94, 94);
 }
 .add-to-cart-button {
-    width: 100%;
-    padding: 10px;
-    border-radius: 8px;
-    background-color: var(--second-blue-dark);
-    border: 1px solid var(--second-blue-light);
-    font-size: 1rem;
-    cursor: pointer;
-    transition: ease-in-out;
-    transition-duration: 0.15s;
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  background-color: var(--second-blue-dark);
+  border: 1px solid var(--second-blue-light);
+  font-size: 1rem;
+  cursor: pointer;
+  transition: ease-in-out;
+  transition-duration: 0.15s;
 }
 .add-to-cart-button:hover {
-    background-color: var(--second-blue-light);
-    border: 1px solid var(--second-blue-light);
+  background-color: var(--second-blue-light);
+  border: 1px solid var(--second-blue-light);
 }
 </style>
