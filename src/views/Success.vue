@@ -113,10 +113,15 @@ function newSale() {
     background-color: var(--second-blue-main);
     border-radius: 8px;
 }
+.sale-items-container {
+    max-height: 50vh;
+    overflow-y: auto;
+}
 .sale-details-summary {
     display: flex;
     justify-content: space-between;
     padding: 20px;
+    border-top: 1px solid var(--second-blue-light);
 }
 .sale-success-actions {
     width: 90%;

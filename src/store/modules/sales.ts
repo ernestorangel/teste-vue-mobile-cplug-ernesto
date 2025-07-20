@@ -7,7 +7,7 @@ export const useSalesStore = defineStore('sales', () => {
     const sales = ref<Sale[]>([])
 
     function getSale(saleId: number) {
-        return sales.value.find((sale) => sale.id === saleId) || {}
+        return sales.value.find((sale) => sale.id === saleId)
     }
 
     function createSale(items: CartItem[]) {

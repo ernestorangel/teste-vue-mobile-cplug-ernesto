@@ -65,7 +65,7 @@ const totalPrice = computed(() => {
     gap: 8px;
     transition: ease-in-out;
     transition-duration: 5s;
-    border-bottom: 1px solid var(--second-blue-light);
+    /* border-bottom: 1px solid var(--second-blue-light); */
     background-color: var(--second-blue-main);
 }
 .cart-item-info {
