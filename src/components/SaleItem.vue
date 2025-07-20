@@ -9,14 +9,14 @@
         <div>
           <div>Realizada em</div>
           <div>
-            <div>{{ formatToCustomDateString(props.date) }}</div>
+            <div>{{ saleDate }}</div>
           </div>
         </div>
       </div>
       <div class="sale-item-header-right">
         <div class="sale-item-header-right-info">
           <div>Total</div>
-          <div>{{ formatMoneyFromNumber(props.total) }}</div>
+          <div>{{ saleTotal }}</div>
         </div>
       </div>
     </div>
@@ -34,11 +34,19 @@
 </template>
 
 <script setup lang="ts">
-// import { computed } from 'vue';
+import { computed } from 'vue';
 import CheckoutItem from './CheckoutItem.vue';
 import { formatToCustomDateString, formatMoneyFromNumber } from '../utils/helpers';
 
 const props = defineProps(['id', 'items', 'total', 'date', 'status']);
+
+const saleDate = computed(() => {
+  return formatToCustomDateString(props.date);
+});
+
+const saleTotal = computed(() => {
+  return formatMoneyFromNumber(props.total);
+});
 </script>
 
 <style scoped>

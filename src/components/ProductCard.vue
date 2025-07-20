@@ -11,7 +11,7 @@
         {{ props.description }}
       </div>
       <div class="product-card-price">
-        {{ formatMoneyFromNumber(props.price) }}
+        {{ productPrice }}
       </div>
     </div>
     <div class="product-card-actions">
@@ -23,12 +23,16 @@
 <script setup lang="ts">
 import { useCartStore } from '../store/modules/cart';
 import { formatMoneyFromNumber } from '../utils/helpers';
-import { ref, onMounted } from 'vue';
+import { ref, computed, onMounted } from 'vue';
 import fallbackImg from '../assets/images/img-fallback.png';
 
 const props = defineProps(['id', 'name', 'price', 'image', 'description']);
 
 const finalSrc = ref(fallbackImg);
+
+const productPrice = computed(() => {
+  return formatMoneyFromNumber(props.price);
+});
 
 onMounted(() => {
   const img = new Image();
