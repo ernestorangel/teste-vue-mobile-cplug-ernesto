@@ -19,3 +19,11 @@ export function getCurrentDate() {
 export function formatMoneyFromNumber(value: number) {
     return `R$ ${(value || 0.0).toFixed(2)}`
 }
+
+export function formatToCustomDateString(date: Date) {
+    return date.toLocaleDateString()
+}
+
+export function formatToCustomTimeString(date: Date) {
+    return date.toLocaleTimeString()
+}
