@@ -8,13 +8,13 @@
       <input
         v-model="search"
         type="search"
-        id="product-search-input"
-        name="product-search"
-        placeholder="Digite para pesquisar"
+        name="product-search-input"
+        placeholder="Digite e aperte 'enter' para pesquisar"
         @focusin="isSearchInputFocused = true"
         @focusout="isSearchInputFocused = false"
         @keydown.enter="isSearchInputFocused ? searchProduct() : ''"
         @input="handleSearchInput"
+        class="product-search-input"
       />
       <button
         @click="searchProduct"
@@ -45,6 +45,7 @@ const search = ref('');
 const isSearchInputFocused = ref(false);
 
 function handleSearchInput() {
+  console.log('search: ', search.value);
   if (search.value === '') searchProduct();
 }
 
@@ -83,9 +84,9 @@ function backToHome() {
   align-items: center;
   justify-content: space-between;
 }
-#product-search-input {
+.product-search-input {
   height: 100%;
-  min-width: 220px;
+  min-width: 280px;
   width: 100%;
   padding: 10px;
   outline: none;

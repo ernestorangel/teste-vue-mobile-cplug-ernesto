@@ -406,10 +406,10 @@ export const useProductsStore = defineStore('products', () => {
     },
   ]);
 
-  const showcaseProducts = ref<Product[]>(products.value);
+  const showcaseProducts = ref<Product[]>([...products.value]);
 
   function search(substring: string) {
-    if (!substring) return products.value;
+    if (!substring) showcaseProducts.value = products.value;
     const matchedProducts = [...products.value].filter(
       (prod) =>
         prod.name.toUpperCase().includes(substring.toUpperCase()) ||
