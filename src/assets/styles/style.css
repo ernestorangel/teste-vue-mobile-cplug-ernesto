@@ -48,11 +48,15 @@
 }
 
 .button-primary {
+  display: flex;
+  align-items: center;
+  gap: 10px;
   padding: 10px;
   border-radius: 8px;
   background-color: var(--blue-main);
   border: 1px solid var(--blue-light);
   font-size: 1rem;
+  font-weight: 500;
   cursor: pointer;
   transition: ease-in-out;
   transition-duration: 0.15s;
@@ -61,6 +65,9 @@
   background-color: var(--blue-dark);
 }
 .button-primary-disabled {
+  display: flex;
+  align-items: center;
+  gap: 10px;
   padding: 10px;
   border-radius: 8px;
   background-color: var(--neutral-90);
@@ -72,8 +79,12 @@
 }
 
 .button-secondary {
+  display: flex;
+  align-items: center;
+  gap: 10px;
   padding: 10px;
   border-radius: 8px;
+  font-weight: 500;
   background-color: var(--neutral-80);
   border: 1px solid var(--neutral-70);
   cursor: pointer;
@@ -84,7 +95,11 @@
   border: 1px solid var(--neutral-70);
   background-color: var(--neutral-90);
 }
+
 .button-text-cancel {
+  display: flex;
+  align-items: center;
+  gap: 10px;
   background-color: transparent;
   color: var(--red-danger);
   cursor: pointer;

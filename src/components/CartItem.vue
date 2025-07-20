@@ -29,7 +29,7 @@
             class="cart-item-qtd-select-enabled"
             @click="incrementItemQuantity"
           >
-            +
+            <Icon shape="plus" size="xs" color="#ffffff" />
           </button>
           <div class="cart-item-qtd-select-quantity">
             {{ props.quantity }}
@@ -45,7 +45,7 @@
             :disabled="isDecrementDisabled"
             @click="decrementItemQuantity"
           >
-            -
+            <Icon shape="minus" size="xs" color="#ffffff" />
           </button>
         </div>
       </div>
@@ -56,6 +56,7 @@
 <script setup lang="ts">
 import { useCartStore } from '../store/modules/cart';
 import { computed } from 'vue';
+import Icon from './Icon.vue';
 import { formatMoneyFromNumber } from '../utils/helpers';
 
 const props = defineProps(['productId', 'quantity', 'price', 'name']);
@@ -121,6 +122,7 @@ function decrementItemQuantity() {
 }
 .cart-item-total-price {
   font-weight: 600;
+  color: var(--green-light);
 }
 .cart-item-actions {
   display: flex;

@@ -1,13 +1,20 @@
 <template>
   <div class="home-menu">
     <div class="home-title">Olá, seja bem-vindo!</div>
-    <button class="button-primary" @click="newSale">Criar Venda</button>
-    <button class="button-secondary" @click="seeSales">Listar Vendas</button>
+    <button class="button-primary" @click="newSale">
+      <Icon shape="plus" size="sm" color="#ffffff" />
+      Criar Venda
+    </button>
+    <button class="button-secondary" @click="seeSales">
+      <Icon shape="list" size="sm" color="#ffffff" />
+      Listar Vendas
+    </button>
   </div>
 </template>
 
 <script setup lang="ts">
 import { useRouter } from 'vue-router';
+import Icon from '../components/Icon.vue';
 const router = useRouter();
 function newSale() {
   router.push('/products');

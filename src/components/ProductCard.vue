@@ -1,7 +1,7 @@
 <template>
   <div class="product-card-container">
     <div class="product-card-image-container">
-      <img class="product-card-image" :src="props.image" />
+      <img :src="finalSrc" :alt="props.description" loading="lazy" class="product-card-image" />
     </div>
     <div class="product-card-info">
       <div class="product-card-name">
@@ -23,7 +23,24 @@
 <script setup lang="ts">
 import { useCartStore } from '../store/modules/cart';
 import { formatMoneyFromNumber } from '../utils/helpers';
+import { ref, onMounted } from 'vue';
+import fallbackImg from '../assets/images/img-fallback.png';
+
 const props = defineProps(['id', 'name', 'price', 'image', 'description']);
+
+const finalSrc = ref(fallbackImg);
+
+onMounted(() => {
+  const img = new Image();
+  img.src = props.image;
+  img.onload = () => {
+    finalSrc.value = props.image;
+  };
+  img.onerror = () => {
+    finalSrc.value = fallbackImg;
+  };
+});
+
 function addToCart() {
   useCartStore().addItem({
     productId: props.id,
@@ -85,7 +102,8 @@ function addToCart() {
 }
 .product-card-price {
   font-size: 1.2rem;
-  color: var(--green-light);
+  font-weight: 600;
+  color: var(--blue-main);
 }
 .product-card-actions {
   display: flex;
