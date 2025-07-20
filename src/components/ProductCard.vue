@@ -51,11 +51,12 @@ function addToCart() {
 <style scoped>
 .product-card-container {
     width: 100%;
+    max-width: 280px;
     display: flex;
     flex-direction: column;
-    gap: 16px;
-    border: 1px solid var(--second-blue-light);
-    background-color: var(--second-blue-main);
+    gap: 8px;
+    /* border: 1px solid var(--second-blue-light);
+    background-color: var(--second-blue-main); */
     padding: 24px;
     border-radius: 8px;
 }
@@ -110,7 +111,7 @@ function addToCart() {
     width: 100%;
     padding: 10px;
     border-radius: 8px;
-    background-color: var(--second-blue-light);
+    background-color: var(--second-blue-dark);
     border: 1px solid var(--second-blue-light);
     font-size: 1rem;
     cursor: pointer;
@@ -118,7 +119,7 @@ function addToCart() {
     transition-duration: 0.15s;
 }
 .add-to-cart-button:hover {
-    background-color: var(--second-blue-dark);
-    border: 1px solid var(--second-blue-dark);
+    background-color: var(--second-blue-light);
+    border: 1px solid var(--second-blue-light);
 }
 </style>

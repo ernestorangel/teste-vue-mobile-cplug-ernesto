@@ -58,6 +58,7 @@
             <div class="cart-header-container">
                 <div class="cart-header-title">Carrinho</div>
                 <button
+                    v-if="cart.length"
                     class="button-text-cancel"
                     @click="clearCart"
                 >
