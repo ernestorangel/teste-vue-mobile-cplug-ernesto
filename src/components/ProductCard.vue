@@ -1,7 +1,7 @@
 <template>
   <div class="product-card-container">
     <div class="product-card-image-container">
-      <img :src="props.image" width="100%" />
+      <img class="product-card-image" :src="props.image" />
     </div>
     <div class="product-card-info">
       <div class="product-card-name">
@@ -40,23 +40,33 @@ function addToCart() {
   max-width: 280px;
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  /* border: 1px solid var(--second-blue-light);
-    background-color: var(--second-blue-main); */
-  padding: 24px;
+  /* gap: 20px; */
+  /* border: 1px solid var(--second-blue-light); */
+  background-color: var(--second-blue-main);
   border-radius: 8px;
+  box-shadow:
+    0 1px 3px rgba(0, 0, 0, 0.12),
+    0 1px 2px rgba(0, 0, 0, 0.24);
 }
 .product-card-image-container {
   width: 100%;
-  height: 180px;
+  min-height: 180px;
   overflow: hidden;
   place-items: center;
-  border-radius: 6px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+.product-card-image {
+  width: 100%;
+  height: 100%;
 }
 .product-card-info {
+  height: 100%;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   gap: 10px;
+  padding: 24px;
 }
 .product-card-name {
   font-size: 1.2rem;
@@ -71,7 +81,7 @@ function addToCart() {
   text-overflow: ellipsis;
   font-size: 0.8rem;
   color: gray;
-  text-align: justify;
+  /* text-align: justify; */
 }
 .product-card-price {
   font-size: 1.2rem;
@@ -82,7 +92,7 @@ function addToCart() {
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  padding-top: 5px;
+  padding: 0 24px 24px 24px;
 }
 .product-card-button {
   width: 100%;
