@@ -65,7 +65,6 @@ export const useCartStore = defineStore('cart', () => {
   }
 
   function applyCoupon(name: string) {
-    console.log('applyCoupon(name): ', name);
     if (!name) return;
     coupon.value = useCouponStore().getCoupon(name);
     useAlertStore().showAlert('success', 'Cupom aplicado.');

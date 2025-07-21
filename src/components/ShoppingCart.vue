@@ -1,6 +1,18 @@
 <template>
-  <div class="cart-container">
+  <div v-if="!isCartDrawerOpen" @click="isCartDrawerOpen = true" class="cart-drawer-open-btn">
+    <div v-if="cart.length" class="cart-drawer-open-btn-label">{{ cart.length }}</div>
+    <Icon shape="cart" size="lg" color="#00aff2" />
+  </div>
+  <div
+    :class="[
+      'cart-container',
+      {
+        'hidden-cart': !isCartDrawerOpen,
+      },
+    ]"
+  >
     <div class="cart-header-container">
+      <div @click="isCartDrawerOpen = false" class="cart-drawer-close-btn">Fechar</div>
       <div class="cart-header-title">Carrinho</div>
       <button
         v-if="cart.length"
@@ -81,6 +93,7 @@
 
 <script setup lang="ts">
 import CartItem from '../components/CartItem.vue';
+import Icon from './Icon.vue';
 import { useRouter } from 'vue-router';
 import { useCartStore } from '../store/modules/cart';
 import { useSalesStore } from '../store/modules/sales';
@@ -101,6 +114,7 @@ const alertStore = useAlertStore();
 const coupon = ref(undefined);
 
 const isCouponInputVisible = ref(false);
+const isCartDrawerOpen = ref(false);
 
 const cart = computed(() => {
   return cartStore.items || [];
@@ -181,6 +195,16 @@ function resetPageData() {
   display: flex;
   flex-direction: column;
   border-left: 1px solid var(--border-color);
+  transition:
+    transform 0.5s ease-in-out,
+    opacity 0.5s ease-in-out;
+  opacity: 1;
+}
+.cart-drawer-open-btn {
+  display: none;
+}
+.cart-drawer-close-btn {
+  display: none;
 }
 .cart-header-container {
   min-height: 60px;
@@ -334,6 +358,86 @@ function resetPageData() {
   display: flex;
   justify-content: space-between;
   padding: 20px;
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+  /* Extra small devices (phones, 600px and down) */
+  .hidden-cart {
+    transform: translateX(100vw);
+    display: none !important;
+  }
+  .cart-container {
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    border-left: 1px solid var(--border-color);
+    z-index: 90;
+  }
+  .cart-drawer-open-btn {
+    display: flex;
+    padding: 20px;
+    position: absolute;
+    bottom: 20px;
+    right: 30px;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    background-color: var(--foreground-color);
+    box-shadow:
+      0 1px 3px rgba(0, 0, 0, 0.12),
+      0 1px 2px rgba(0, 0, 0, 0.24);
+    z-index: 80;
+    cursor: pointer;
+  }
+  .cart-drawer-open-btn-label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    border-radius: 100%;
+    background-color: var(--green-dark);
+    color: var(--text-color);
+  }
+  .cart-drawer-open-btn:hover {
+    background-color: var(--background-color);
+  }
+  .cart-drawer-close-btn {
+    display: flex;
+    cursor: pointer;
+    color: var(--text-faded-color);
+  }
+  .cart-drawer-close-btn:hover {
+    color: var(--text-color);
+  }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+  /* Small devices (portrait tablets and large phones, 600px and up) */
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+  /* Medium devices (landscape tablets, 768px and up) */
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+  /* Large devices (laptops/desktops, 992px and up) */
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+  /* Extra large devices (large laptops and desktops, 1200px and up) */
 }
 
 .list-enter-active,

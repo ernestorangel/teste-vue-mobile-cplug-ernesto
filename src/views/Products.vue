@@ -59,6 +59,7 @@ const searchTerm = computed(() => {
 .products-container {
   width: 70%;
   height: 100%;
+  overflow: hidden;
 }
 .products-grid-container {
   height: calc(100% - 80px);
@@ -77,6 +78,39 @@ const searchTerm = computed(() => {
   padding: 40px;
   font-size: 1.2rem;
   color: #00aff2;
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+  /* Extra small devices (phones, 600px and down) */
+  .products-page-container {
+    width: 100%;
+    height: 100%;
+  }
+  .products-container {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+  /* Small devices (portrait tablets and large phones, 600px and up) */
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+  /* Medium devices (landscape tablets, 768px and up) */
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+  /* Large devices (laptops/desktops, 992px and up) */
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+  /* Extra large devices (large laptops and desktops, 1200px and up) */
 }
 
 .list-enter-active,

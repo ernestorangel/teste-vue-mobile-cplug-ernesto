@@ -14,6 +14,9 @@
         :total="sale.total"
         :date="sale.date"
         :status="sale.status"
+        :discount="sale.discount"
+        :netTotal="sale.netTotal"
+        :coupon="sale.coupon"
       />
     </div>
   </div>
@@ -46,6 +49,7 @@ function backToHome() {
   gap: 20px;
   padding-top: 80px;
 }
+
 .history-page-header {
   width: 90%;
   max-width: 920px;
@@ -57,10 +61,12 @@ function backToHome() {
   top: 0;
   background-color: var(--background-color);
 }
+
 .history-title {
-  font-size: 1.5rem;
   font-weight: 800;
+  font-size: 1.5rem;
 }
+
 .sales-list-container {
   width: 90%;
   max-width: 920px;
@@ -69,6 +75,7 @@ function backToHome() {
   gap: 40px;
   padding-bottom: 40px;
 }
+
 .sales-list-empty {
   width: 100%;
   display: flex;
@@ -76,5 +83,12 @@ function backToHome() {
   padding: 40px;
   font-size: 1.2rem;
   color: #00aff2;
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+  .history-title {
+    font-size: 1rem;
+  }
 }
 </style>

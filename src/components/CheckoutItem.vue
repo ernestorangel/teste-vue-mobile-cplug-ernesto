@@ -1,20 +1,19 @@
 <template>
   <div class="cart-item-container">
-    <div class="cart-item-info">
-      <div class="cart-item-name">
-        {{ props.name }}
-      </div>
+    <div
+      :class="[
+        {
+          'cart-item-info-condensed': props.condensed,
+          'cart-item-info': !props.condensed,
+        },
+      ]"
+    >
+      <div class="cart-item-name">{{ props.quantity }} x {{ props.name }}</div>
       <div class="cart-item-prices">
-        <div class="cart-item-price-container">
+        <div class="cart-item-price-container" v-if="!props.condensed">
           <div class="cart-item-price-title">Valor Unitário</div>
           <div class="cart-item-price">
             {{ unitPrice }}
-          </div>
-        </div>
-        <div class="cart-item-qtd-select-wrapper">
-          <div class="cart-item-qtd-select-title">Quantidade</div>
-          <div class="cart-item-qtd-select-quantity">
-            {{ props.quantity }}
           </div>
         </div>
         <div class="cart-item-total-price-container">
@@ -32,7 +31,7 @@
 import { computed } from 'vue';
 import { formatMoneyFromNumber } from '../utils/helpers';
 
-const props = defineProps(['productId', 'quantity', 'price', 'name']);
+const props = defineProps(['productId', 'quantity', 'price', 'name', 'condensed']);
 
 const unitPrice = computed(() => {
   return formatMoneyFromNumber(props.price);
@@ -48,9 +47,7 @@ const totalPrice = computed(() => {
   width: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  gap: 8px;
-  background-color: var(--foreground-color);
+  background-color: var(--background-color);
 }
 .cart-item-info {
   display: flex;
@@ -58,13 +55,24 @@ const totalPrice = computed(() => {
   padding: 20px;
   gap: 20px;
 }
+.cart-item-info-condensed {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 20px;
+  gap: 20px;
+  border-bottom: 1px solid var(--border-color);
+}
 .cart-item-name {
   font-size: 1.2rem;
   font-weight: 600;
 }
 .cart-item-prices {
+  height: 100%;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   gap: 10px;
 }
 .cart-item-price-container {
@@ -88,10 +96,11 @@ const totalPrice = computed(() => {
   padding: 10px 20px 20px 20px;
 }
 .cart-item-qtd-select-wrapper {
+  height: 100%;
   display: flex;
   flex-direction: column;
+  justify-content: ce;
   align-items: center;
-  gap: 8px;
 }
 .cart-item-qtd-select-title {
   font-size: 0.6rem;

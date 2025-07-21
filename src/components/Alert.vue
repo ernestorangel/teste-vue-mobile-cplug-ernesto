@@ -53,7 +53,7 @@ function isErrorMessage(severity: string) {
   bottom: 0;
   overflow: hidden;
   pointer-events: none;
-  z-index: 90;
+  z-index: 999999;
 }
 .alert-container {
   width: 100%;

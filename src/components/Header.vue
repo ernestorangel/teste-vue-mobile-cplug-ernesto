@@ -47,7 +47,6 @@ const search = ref('');
 const isSearchInputFocused = ref(false);
 
 function handleSearchInput() {
-  console.log('search: ', search.value);
   if (search.value === '') searchProduct();
 }
 
@@ -65,6 +64,7 @@ function backToHome() {
 .product-grid-header {
   height: 80px;
   padding: 0 40px;
+  gap: 20px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -129,5 +129,76 @@ function backToHome() {
   border-top-right-radius: 6px;
   border-bottom-right-radius: 6px;
   cursor: not-allowed;
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+  /* Extra small devices (phones, 600px and down) */
+  .product-grid-header {
+    width: 100%;
+    height: auto;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: space-between;
+    overflow-x: hidden;
+    gap: 20px;
+    border-bottom: 1px solid var(--border-color);
+    background-color: var(--foreground-color);
+  }
+  .product-grid-search {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .product-search-input {
+    width: 100%;
+    min-width: auto;
+  }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+  /* Small devices (portrait tablets and large phones, 600px and up) */
+  .product-grid-header {
+    min-width: 120px;
+    width: 100%;
+    height: auto;
+    padding: 20px;
+    display: flex;
+    align-items: start;
+    justify-content: space-between;
+    overflow-x: hidden;
+    gap: 20px;
+    border-bottom: 1px solid var(--border-color);
+    background-color: var(--foreground-color);
+  }
+  .product-grid-search {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .product-search-input {
+    width: 100%;
+    min-width: auto;
+  }
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+  /* Medium devices (landscape tablets, 768px and up) */
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+  /* Large devices (laptops/desktops, 992px and up) */
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+  /* Extra large devices (large laptops and desktops, 1200px and up) */
 }
 </style>

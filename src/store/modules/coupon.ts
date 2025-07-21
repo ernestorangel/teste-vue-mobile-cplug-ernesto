@@ -26,7 +26,6 @@ export const useCouponStore = defineStore('coupon', () => {
   }
 
   function isCouponActive(name: string) {
-    console.log('isCouponActive(name):  ', name);
     const coupon = getCoupon(name);
     if (coupon) return coupon.isActive;
     return Boolean(coupon);
