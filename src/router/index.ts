@@ -21,6 +21,14 @@ async function setupRouter() {
     routes,
   });
 
+  router.beforeEach((to, from) => {
+    if (to.name === 'success') {
+      if (!(from.name === 'products')) {
+        return { path: '/home ' };
+      }
+    }
+  });
+
   return router;
 }
 
