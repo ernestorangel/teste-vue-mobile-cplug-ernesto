@@ -1,7 +1,7 @@
 <template>
   <div class="product-grid-header">
     <div class="product-grid-header-title-container">
-      <button @click="backToHome" class="button-secondary">Voltar</button>
+      <button data-testid="back-btn" @click="backToHome" class="button-secondary">Voltar</button>
       <div class="product-grid-header-title">Produtos</div>
     </div>
     <div class="product-grid-search">
@@ -15,6 +15,7 @@
         @keydown.enter="isSearchInputFocused ? searchProduct() : ''"
         @input="handleSearchInput"
         class="product-search-input"
+        data-testid="search-input"
       />
       <button
         @click="searchProduct"
@@ -25,6 +26,7 @@
             'product-search-button-disabled': !search.length,
           },
         ]"
+        data-testid="search-btn"
       >
         <Icon shape="search" size="xs" color="#3c4a57" />
       </button>

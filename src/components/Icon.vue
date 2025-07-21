@@ -90,7 +90,11 @@ const width = computed(() => {
   else return 24;
 });
 const height = computed(() => {
-  if (props.size === 'sm') return 24;
+  if (props.size === 'xs') return 12;
+  if (props.size === 'sm') return 18;
+  if (props.size === 'md') return 24;
+  if (props.size === 'lg') return 30;
+  if (props.size === 'xl') return 36;
   else return 24;
 });
 </script>

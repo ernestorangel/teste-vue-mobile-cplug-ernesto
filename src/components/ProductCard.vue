@@ -1,7 +1,13 @@
 <template>
   <div class="product-card-container">
     <div class="product-card-image-container">
-      <img :src="finalSrc" :alt="props.description" loading="lazy" class="product-card-image" />
+      <img
+        data-testid="product-img"
+        :src="finalSrc"
+        :alt="props.description"
+        loading="lazy"
+        class="product-card-image"
+      />
     </div>
     <div class="product-card-info">
       <div class="product-card-name">
@@ -15,7 +21,9 @@
       </div>
     </div>
     <div class="product-card-actions">
-      <button @click="addToCart" class="add-to-cart-button">Adicionar ao carrinho</button>
+      <button data-testid="add-to-cart-btn" @click="addToCart" class="add-to-cart-button">
+        Adicionar ao carrinho
+      </button>
     </div>
   </div>
 </template>
