@@ -1,6 +1,28 @@
-# Teste VUE | Ernesto Rangel | Cplug
+# Vue Challenge | Ernesto Rangel | CPlug
 
-This is a project developed as a tech challenge to Cplug
+Project developed by [Ernesto Rangel](https://ernestorangel.dev) as a tech challenge to [ConnectPlug](https://www.cplug.com.br/)
+
+## About the project
+
+**Technologies used:**
+
+- [Vue 3](https://vuejs.org/) (Composition API)
+- [Vite](https://vitejs.dev/) (build tool)
+- [Pinia](https://pinia.vuejs.org/) (state management)
+- [Vue Router](https://router.vuejs.org/) (routing)
+- [Vitest](https://vitest.dev/) (unit testing)
+- [vite-plugin-pwa](https://vite-pwa-org.netlify.app/) (PWA support)
+- [TypeScript](https://www.typescriptlang.org/)
+
+**Main features:**
+
+- Product listing and shopping cart
+- Checkout flow with success and error feedback
+- Alert system for user notifications
+- Responsive layout for desktop
+- PWA support (installable, offline-ready)
+- Automatic dark/light mode based on browser or system preference
+- Unit tests with coverage
 
 ## Running the project
 
