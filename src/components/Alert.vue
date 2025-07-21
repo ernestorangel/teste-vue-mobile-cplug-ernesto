@@ -6,8 +6,8 @@
           :class="[
             'alert-message',
             {
-              'sucess-message': true,
-              'error-message': false,
+              'sucess-message': isSuccessMessage(alert.severity),
+              'error-message': isErrorMessage(alert.severity),
             },
           ]"
         >
@@ -24,6 +24,12 @@ import { useAlertStore } from '../store/modules/alert';
 const alertStore = useAlertStore();
 function closeAlert(alertId: string) {
   alertStore.removeAlert(alertId);
+}
+function isSuccessMessage(severity: string) {
+  return severity === 'success';
+}
+function isErrorMessage(severity: string) {
+  return severity === 'error';
 }
 </script>
 
@@ -46,6 +52,7 @@ function closeAlert(alertId: string) {
 .alert-container {
   width: 100%;
   display: flex;
+  margin-bottom: 20px;
   background-color: var(--second-blue-main);
   border: 1px solid var(--second-blue-light);
   border-radius: 6px;
@@ -65,7 +72,7 @@ function closeAlert(alertId: string) {
   color: var(--green-dark);
 }
 .error-message {
-  color: var(--red-danger);
+  color: var(--red-danger-light);
 }
 .alert-close-button {
   padding: 10px;

@@ -21,7 +21,7 @@ export const useSalesStore = defineStore('sales', () => {
       status: 'completed',
     };
     sales.value.push(newSale);
-    useAlertStore().showAlert('success', 'Venda criada.');
+    useAlertStore().showAlert('success', 'Venda realizada com sucesso');
     return saleId;
   }
 

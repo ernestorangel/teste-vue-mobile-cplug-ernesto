@@ -1,6 +1,7 @@
 import { defineStore } from 'pinia';
 import type { CartItem } from '../../types';
 import { ref } from 'vue';
+import { useAlertStore } from './alert';
 
 export const useCartStore = defineStore('cart', () => {
   const items = ref<Array<CartItem>>([]);
@@ -11,12 +12,15 @@ export const useCartStore = defineStore('cart', () => {
 
   function addItem(item: CartItem) {
     const cartItem = getItem(item.productId);
-    if (!cartItem) items.value.push(item);
-    else cartItem.quantity++;
+    if (!cartItem) {
+      items.value.push(item);
+      useAlertStore().showAlert('success', 'Item adicionado ao carrinho');
+    } else cartItem.quantity++;
   }
 
   function removeItem(itemId: number) {
     items.value = items.value.filter((item) => item.productId !== itemId);
+    useAlertStore().showAlert('error', 'Item removido do carrinho');
   }
 
   function getItemQuantity(itemId: number) {

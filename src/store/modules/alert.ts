@@ -1,18 +1,10 @@
 import { defineStore } from 'pinia';
-import { ref, watch } from 'vue';
+import { ref } from 'vue';
 import type { Alert } from '../../types';
 import { v4 as uuidv4 } from 'uuid';
 
 export const useAlertStore = defineStore('alert', () => {
   const alerts = ref<Alert[]>([]);
-
-  watch(
-    alerts,
-    () => {
-      console.log('alerts.value: ', alerts.value);
-    },
-    { deep: true }
-  );
 
   const duration = 3000;
 

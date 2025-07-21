@@ -48,6 +48,8 @@ import { useCartStore } from '../store/modules/cart';
 import { useSalesStore } from '../store/modules/sales';
 import { computed } from 'vue';
 import { formatMoneyFromNumber } from '../utils/helpers';
+import { useAlertStore } from '../store/modules/alert';
+import { useProductsStore } from '../store/modules/products';
 
 const router = useRouter();
 
@@ -62,11 +64,13 @@ const cartTotal = computed(() => {
 function checkout() {
   const saleId = useSalesStore().createSale(cart.value);
   if (saleId) router.push(`success/${saleId}`);
-  clearCart();
+  useCartStore().deleteAll();
+  useProductsStore().search('');
 }
 
 function clearCart() {
   useCartStore().deleteAll();
+  useAlertStore().showAlert('error', 'Seu carrinho está vazio');
 }
 </script>
 
