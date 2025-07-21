@@ -15,6 +15,8 @@
                 :price="product.price"
                 :image="product.image"
                 :description="product.description"
+                :category="product.category"
+                :searchTerm="searchTerm"
               />
             </TransitionGroup>
           </div>
@@ -40,6 +42,10 @@ const products = computed(() => {
 
 const isProductsEmpty = computed(() => {
   return !products.value || !products.value.length;
+});
+
+const searchTerm = computed(() => {
+  return productsStore.searchTerm || undefined;
 });
 </script>
 

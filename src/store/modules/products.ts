@@ -406,17 +406,21 @@ export const useProductsStore = defineStore('products', () => {
     },
   ]);
 
+  const searchTerm = ref<string | undefined>();
+
   const showcaseProducts = ref<Product[]>([...products.value]);
 
   function search(substring: string) {
+    searchTerm.value = substring;
     if (!substring) showcaseProducts.value = products.value;
     const matchedProducts = [...products.value].filter(
       (prod) =>
         prod.name.toUpperCase().includes(substring.toUpperCase()) ||
-        prod.description.toUpperCase().includes(substring.toUpperCase())
+        prod.description.toUpperCase().includes(substring.toUpperCase()) ||
+        prod.category.toUpperCase().includes(substring.toUpperCase())
     );
     showcaseProducts.value = matchedProducts;
   }
 
-  return { products, showcaseProducts, search };
+  return { products, searchTerm, showcaseProducts, search };
 });

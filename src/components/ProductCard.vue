@@ -10,14 +10,24 @@
       />
     </div>
     <div class="product-card-info">
-      <div class="product-card-name">
-        {{ props.name }}
+      <div class="product-card-name" v-html="highlight(props.name)"></div>
+      <div>
+        <div class="product-card-info-title">Descrição</div>
+        <div
+          :title="props.description"
+          v-html="highlight(props.description)"
+          class="product-card-description"
+        ></div>
       </div>
-      <div :title="props.description" class="product-card-description">
-        {{ props.description }}
+      <div>
+        <div class="product-card-info-title">Categoria</div>
+        <div v-html="highlight(props.category)"></div>
       </div>
-      <div class="product-card-price">
-        {{ productPrice }}
+      <div>
+        <div class="product-card-info-title">Valor unitário</div>
+        <div class="product-card-price">
+          {{ productPrice }}
+        </div>
       </div>
     </div>
     <div class="product-card-actions">
@@ -34,7 +44,15 @@ import { formatMoneyFromNumber } from '../utils/helpers';
 import { ref, computed, onMounted } from 'vue';
 import fallbackImg from '../assets/images/img-fallback.png';
 
-const props = defineProps(['id', 'name', 'price', 'image', 'description']);
+const props = defineProps([
+  'id',
+  'name',
+  'price',
+  'image',
+  'description',
+  'category',
+  'searchTerm',
+]);
 
 const finalSrc = ref(fallbackImg);
 
@@ -60,6 +78,12 @@ function addToCart() {
     price: props.price,
     name: props.name,
   });
+}
+
+function highlight(text: string) {
+  if (!props.searchTerm) return text;
+  const regex = new RegExp(`(${props.searchTerm})`, 'gi');
+  return text.replace(regex, '<mark>$1</mark>');
 }
 </script>
 
@@ -100,6 +124,11 @@ function addToCart() {
 .product-card-name {
   font-size: 1.2rem;
   font-weight: 600;
+}
+.product-card-info-title {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--text-faded-color);
 }
 .product-card-description {
   display: -webkit-box;
