@@ -5,14 +5,16 @@
       <button v-if="cart.length" class="button-text-cancel" @click="clearCart">Limpar</button>
     </div>
     <div class="cart-content-container">
-      <CartItem
-        v-for="item in cart"
-        :key="item.productId"
-        :productId="item.productId"
-        :quantity="item.quantity"
-        :price="item.price"
-        :name="item.name"
-      />
+      <TransitionGroup>
+        <CartItem
+          v-for="item in cart"
+          :key="item.productId"
+          :productId="item.productId"
+          :quantity="item.quantity"
+          :price="item.price"
+          :name="item.name"
+        />
+      </TransitionGroup>
     </div>
     <div class="cart-actions-container">
       <div class="cart-summary">
@@ -125,5 +127,15 @@ function clearCart() {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+}
+
+.list-enter-active,
+.list-leave-active {
+  transition: all 0.5s ease;
+}
+.list-enter-from,
+.list-leave-to {
+  opacity: 0;
+  transform: translateX(30px);
 }
 </style>

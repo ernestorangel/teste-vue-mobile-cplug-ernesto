@@ -1,6 +1,7 @@
 import { defineStore } from 'pinia';
 import type { Sale, CartItem } from '../../types';
 import { ref } from 'vue';
+import { useAlertStore } from './alert';
 import { getNewSaleId, getTotalFromCartItems, getCurrentDate } from '../../utils/helpers';
 
 export const useSalesStore = defineStore('sales', () => {
@@ -20,6 +21,7 @@ export const useSalesStore = defineStore('sales', () => {
       status: 'completed',
     };
     sales.value.push(newSale);
+    useAlertStore().showAlert('success', 'Venda criada.');
     return saleId;
   }
 

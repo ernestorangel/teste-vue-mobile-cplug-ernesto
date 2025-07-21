@@ -3,18 +3,22 @@
     <div class="products-container">
       <Header />
       <div class="products-grid-container">
-        <div v-if="isProductsEmpty" class="products-grid-empty">Nenhum produto encontrado</div>
-        <div v-else class="products-grid">
-          <ProductCard
-            v-for="product in products"
-            :key="product.id"
-            :id="product.id"
-            :name="product.name"
-            :price="product.price"
-            :image="product.image"
-            :description="product.description"
-          />
-        </div>
+        <Transition>
+          <div v-if="isProductsEmpty" class="products-grid-empty">Nenhum produto encontrado</div>
+          <div v-else class="products-grid">
+            <TransitionGroup>
+              <ProductCard
+                v-for="product in products"
+                :key="product.id"
+                :id="product.id"
+                :name="product.name"
+                :price="product.price"
+                :image="product.image"
+                :description="product.description"
+              />
+            </TransitionGroup>
+          </div>
+        </Transition>
       </div>
     </div>
     <ShoppingCart />
@@ -67,5 +71,15 @@ const isProductsEmpty = computed(() => {
   padding: 40px;
   font-size: 1.2rem;
   color: #00aff2;
+}
+
+.list-enter-active,
+.list-leave-active {
+  transition: all 0.5s ease;
+}
+.list-enter-from,
+.list-leave-to {
+  opacity: 0;
+  transform: translateX(30px);
 }
 </style>

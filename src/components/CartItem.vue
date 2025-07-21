@@ -91,8 +91,6 @@ function decrementItemQuantity() {
   flex-direction: column;
   justify-content: space-between;
   gap: 8px;
-  transition: ease-in-out;
-  transition-duration: 5s;
   border-bottom: 1px solid var(--second-blue-light);
   background-color: var(--second-blue-main);
 }
