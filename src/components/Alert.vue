@@ -53,8 +53,8 @@ function isErrorMessage(severity: string) {
   width: 100%;
   display: flex;
   margin-bottom: 20px;
-  background-color: var(--second-blue-main);
-  border: 1px solid var(--second-blue-light);
+  background-color: var(--foreground-color);
+  border: 1px solid var(--border-color);
   border-radius: 6px;
   box-shadow:
     0 1px 3px rgba(0, 0, 0, 0.12),
@@ -69,19 +69,19 @@ function isErrorMessage(severity: string) {
   text-overflow: clip;
 }
 .sucess-message {
-  color: var(--green-dark);
+  color: var(--highlight-color);
 }
 .error-message {
-  color: var(--red-danger-light);
+  color: var(--error-color);
 }
 .alert-close-button {
   padding: 10px;
   background-color: transparent;
-  color: var(--neutral-60);
+  color: var(--text-faded-color);
   cursor: pointer;
 }
 .alert-close-button:hover {
-  color: var(--neutral-30);
+  color: var(--text-color);
 }
 
 .alert-fade-enter-active,

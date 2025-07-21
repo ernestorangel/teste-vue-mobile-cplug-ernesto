@@ -55,7 +55,7 @@ function backToHome() {
   align-items: center;
   position: fixed;
   top: 0;
-  background-color: var(--second-blue-dark);
+  background-color: var(--background-color);
 }
 .history-title {
   font-size: 1.5rem;
@@ -67,6 +67,7 @@ function backToHome() {
   display: flex;
   flex-direction: column;
   gap: 40px;
+  padding-bottom: 40px;
 }
 .sales-list-empty {
   width: 100%;

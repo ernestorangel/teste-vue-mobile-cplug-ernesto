@@ -57,7 +57,7 @@ const saleTotal = computed(() => {
   justify-content: space-between;
   gap: 8px;
   border-radius: 8px;
-  background-color: var(--second-blue-main);
+  background-color: var(--foreground-color);
   transition: ease-in-out;
   transition-duration: 0.5s;
   padding-bottom: 20px;
@@ -69,8 +69,8 @@ const saleTotal = computed(() => {
   justify-content: space-between;
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
-  border-bottom: 1px solid var(--second-blue-dark);
-  background-color: var(--second-blue-light);
+  border-bottom: 1px solid var(--border-color);
+  background-color: var(--foreground-color);
 }
 .sale-item-header-left {
   display: flex;

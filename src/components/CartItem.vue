@@ -91,8 +91,8 @@ function decrementItemQuantity() {
   flex-direction: column;
   justify-content: space-between;
   gap: 8px;
-  border-bottom: 1px solid var(--second-blue-light);
-  background-color: var(--second-blue-main);
+  border-bottom: 1px solid var(--border-color);
+  background-color: var(--foreground-color);
 }
 .cart-item-info {
   display: flex;
@@ -110,7 +110,7 @@ function decrementItemQuantity() {
   gap: 10px;
 }
 .cart-item-price-container {
-  color: var(--neutral-40);
+  color: var(--text-faded-color);
 }
 .cart-item-total-price-container {
   display: flex;
@@ -120,7 +120,7 @@ function decrementItemQuantity() {
 }
 .cart-item-total-price {
   font-weight: 600;
-  color: var(--green-light);
+  color: var(--highlight-color);
 }
 .cart-item-actions {
   display: flex;
@@ -138,7 +138,7 @@ function decrementItemQuantity() {
 }
 .cart-item-qtd-select-title {
   font-size: 0.6rem;
-  color: var(--neutral-40);
+  color: var(--text-faded-color);
 }
 .cart-item-qtd-select-container {
   display: flex;
@@ -150,11 +150,11 @@ function decrementItemQuantity() {
   justify-content: center;
   align-items: center;
   border-radius: 4px;
-  background-color: var(--second-blue-dark);
+  background-color: var(--background-color);
   cursor: pointer;
 }
 .cart-item-qtd-select-enabled:hover {
-  background-color: var(--second-blue-light);
+  background-color: var(--foreground-highlight-color);
 }
 .cart-item-qtd-select-disabled {
   min-width: 25px;
@@ -162,7 +162,7 @@ function decrementItemQuantity() {
   justify-content: center;
   align-items: center;
   border-radius: 4px;
-  background-color: var(--second-blue-dark);
+  background-color: var(--background-color);
   cursor: not-allowed;
 }
 .cart-item-qtd-select-quantity {

@@ -7,18 +7,6 @@
 }
 
 :root {
-  line-height: 1.5;
-  font-weight: 400;
-
-  color-scheme: light dark;
-  color: var(--blue-neutral);
-  background-color: var(--second-blue-dark);
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-
   /* cplug colors according to their website */
   --blue-neutral: #f8f9ff;
   --blue-light: #33c3f5;
@@ -45,6 +33,102 @@
   --neutral-80: #616161;
   --neutral-90: #424242;
   --neutral-100: #111;
+
+  --dark-background-color: var(--second-blue-dark);
+  --dark-foreground-color: var(--second-blue-main);
+  --dark-foreground-highlight-color: var(--second-blue-light);
+  --dark-text-color: var(--neutral-10);
+  --dark-text-faded-color: var(--neutral-70);
+  --dark-border-color: var(--neutral-90);
+  --dark-highlight-color: var(--green-main);
+  --dark-error-color: var(--red-danger-light);
+
+  --dark-primary-btn-bg-color: var(--blue-main);
+  --dark-primary-btn-bg-hover-color: var(--blue-dark);
+  --dark-primary-btn-txt-color: var(--neutral-10);
+  --dark-primary-btn-border-color: var(--blue-light);
+
+  --dark-secondary-btn-bg-color: var(--neutral-80);
+  --dark-secondary-btn-bg-hover-color: var(--neutral-90);
+  --dark-secondary-btn-txt-color: var(--neutral-10);
+  --dark-secondary-btn-border-color: var(--neutral-70);
+
+  --light-background-color: var(--neutral-40);
+  --light-foreground-color: var(--neutral-20);
+  --light-foreground-highlight-color: var(--neutral-60);
+  --light-text-color: var(--neutral-100);
+  --light-text-faded-color: var(--neutral-50);
+  --light-border-color: var(--neutral-50);
+  --light-highlight-color: var(--green-dark);
+  --light-error-color: var(--red-danger);
+
+  --light-primary-btn-bg-color: var(--blue-main);
+  --light-primary-btn-bg-hover-color: var(--blue-light);
+  --light-primary-btn-txt-color: var(--neutral-10);
+  --light-primary-btn-border-color: var(--blue-dark);
+
+  --light-secondary-btn-bg-color: var(--neutral-60);
+  --light-secondary-btn-bg-hover-color: var(--neutral-50);
+  --light-secondary-btn-txt-color: var(--neutral-10);
+  --light-secondary-btn-border-color: var(--neutral-70);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --text-color: var(--dark-text-color);
+    --text-faded-color: var(--dark-text-faded-color);
+    --background-color: var(--dark-background-color);
+    --foreground-color: var(--dark-foreground-color);
+    --foreground-highlight-color: var(--dark-foreground-highlight-color);
+    --border-color: var(--dark-border-color);
+    --highlight-color: var(--dark-highlight-color);
+    --error-color: var(--dark-error-color);
+
+    --primary-btn-bg-color: var(--dark-primary-btn-bg-color);
+    --primary-btn-bg-hover-color: var(--dark-primary-btn-bg-hover-color);
+    --primary-btn-txt-color: var(--dark-primary-btn-txt-color);
+    --primary-btn-border-color: var(--dark-primary-btn-border-color);
+
+    --secondary-btn-bg-color: var(--dark-secondary-btn-bg-color);
+    --secondary-btn-bg-hover-color: var(--dark-secondary-btn-bg-hover-color);
+    --secondary-btn-txt-color: var(--dark-secondary-btn-txt-color);
+    --secondary-btn-border-color: var(--dark-secondary-btn-border-color);
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --text-color: var(--light-text-color);
+    --text-faded-color: var(--light-text-faded-color);
+    --background-color: var(--light-background-color);
+    --foreground-color: var(--light-foreground-color);
+    --foreground-highlight-color: var(--light-foreground-highlight-color);
+    --border-color: var(--light-border-color);
+    --highlight-color: var(--light-highlight-color);
+    --error-color: var(--light-error-color);
+
+    --primary-btn-bg-color: var(--light-primary-btn-bg-color);
+    --primary-btn-bg-hover-color: var(--light-primary-btn-bg-hover-color);
+    --primary-btn-txt-color: var(--light-primary-btn-txt-color);
+    --primary-btn-border-color: var(--light-primary-btn-border-color);
+
+    --secondary-btn-bg-color: var(--light-secondary-btn-bg-color);
+    --secondary-btn-bg-hover-color: var(--light-secondary-btn-bg-hover-color);
+    --secondary-btn-txt-color: var(--light-secondary-btn-txt-color);
+    --secondary-btn-border-color: var(--light-secondary-btn-border-color);
+  }
+}
+
+:root {
+  line-height: 1.5;
+  font-weight: 400;
+  color-scheme: light dark;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: var(--text-color);
+  background-color: var(--background-color);
 }
 
 .button-primary {
@@ -53,8 +137,9 @@
   gap: 10px;
   padding: 10px;
   border-radius: 8px;
-  background-color: var(--blue-main);
-  border: 1px solid var(--blue-light);
+  background-color: var(--primary-btn-bg-color);
+  border: 1px solid var(--primary-btn-border-color);
+  color: var(--primary-btn-txt-color);
   font-size: 1rem;
   font-weight: 500;
   cursor: pointer;
@@ -62,7 +147,7 @@
   transition-duration: 0.15s;
 }
 .button-primary:hover {
-  background-color: var(--blue-dark);
+  background-color: var(--primary-btn-bg-hover-color);
 }
 .button-primary-disabled {
   display: flex;
@@ -77,7 +162,6 @@
   transition: ease-in-out;
   transition-duration: 0.15s;
 }
-
 .button-secondary {
   display: flex;
   align-items: center;
@@ -85,17 +169,15 @@
   padding: 10px;
   border-radius: 8px;
   font-weight: 500;
-  background-color: var(--neutral-80);
-  border: 1px solid var(--neutral-70);
+  background-color: var(--secondary-btn-bg-color);
+  border: 1px solid var(--secondary-btn-border-color);
   cursor: pointer;
   transition: ease-in-out;
   transition-duration: 0.15s;
 }
 .button-secondary:hover {
-  border: 1px solid var(--neutral-70);
-  background-color: var(--neutral-90);
+  background-color: var(--secondary-btn-bg-hover-color);
 }
-
 .button-text-cancel {
   display: flex;
   align-items: center;
@@ -108,17 +190,4 @@
 }
 .button-text-cancel:hover {
   color: var(--red-danger-light);
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
 }

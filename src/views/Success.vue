@@ -95,7 +95,7 @@ function newSale() {
 .sale-details-header {
   padding: 20px;
   font-size: 1.2rem;
-  border-bottom: 1px solid var(--second-blue-light);
+  border-bottom: 1px solid var(--border-color);
 }
 .sale-details-container {
   width: 90%;
@@ -103,8 +103,8 @@ function newSale() {
   display: flex;
   flex-direction: column;
   gap: 8px;
-  border: 1px solid var(--second-blue-light);
-  background-color: var(--second-blue-main);
+  border: 1px solid var(--border-color);
+  background-color: var(--foreground-color);
   border-radius: 8px;
 }
 .sale-items-container {
@@ -115,7 +115,7 @@ function newSale() {
   display: flex;
   justify-content: space-between;
   padding: 20px;
-  border-top: 1px solid var(--second-blue-light);
+  border-top: 1px solid var(--border-color);
 }
 .sale-success-actions {
   width: 90%;

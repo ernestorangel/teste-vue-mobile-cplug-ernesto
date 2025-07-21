@@ -68,8 +68,8 @@ function backToHome() {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-bottom: 1px solid var(--second-blue-light);
-  background-color: var(--second-blue-main);
+  border-bottom: 1px solid var(--border-color);
+  background-color: var(--foreground-color);
 }
 .product-grid-header-title-container {
   display: flex;
@@ -92,12 +92,12 @@ function backToHome() {
   width: 100%;
   padding: 10px;
   outline: none;
-  border-top: 1px solid var(--second-blue-light);
-  border-left: 1px solid var(--second-blue-light);
-  border-bottom: 1px solid var(--second-blue-light);
+  border-top: 1px solid var(--border-color);
+  border-left: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--border-color);
   border-top-left-radius: 6px;
   border-bottom-left-radius: 6px;
-  background-color: var(--second-blue-dark);
+  background-color: var(--background-color);
 }
 .product-search-button {
   display: flex;
@@ -106,10 +106,10 @@ function backToHome() {
   border: 0;
   box-shadow: 0;
   padding: 0 10px;
-  background-color: var(--second-blue-dark);
-  border-right: 1px solid var(--second-blue-light);
-  border-top: 1px solid var(--second-blue-light);
-  border-bottom: 1px solid var(--second-blue-light);
+  background-color: var(--background-color);
+  border-right: 1px solid var(--border-color);
+  border-top: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--border-color);
   border-top-right-radius: 6px;
   border-bottom-right-radius: 6px;
   cursor: pointer;
@@ -122,10 +122,10 @@ function backToHome() {
   height: 100%;
   box-shadow: 0;
   padding: 0 10px;
-  background-color: var(--second-blue-dark);
-  border-right: 1px solid var(--second-blue-light);
-  border-top: 1px solid var(--second-blue-light);
-  border-bottom: 1px solid var(--second-blue-light);
+  background-color: var(--background-color);
+  border-right: 1px solid var(--border-color);
+  border-top: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--border-color);
   border-top-right-radius: 6px;
   border-bottom-right-radius: 6px;
   cursor: not-allowed;

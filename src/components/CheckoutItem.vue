@@ -50,10 +50,7 @@ const totalPrice = computed(() => {
   flex-direction: column;
   justify-content: space-between;
   gap: 8px;
-  transition: ease-in-out;
-  transition-duration: 5s;
-  /* border-bottom: 1px solid var(--second-blue-light); */
-  background-color: var(--second-blue-main);
+  background-color: var(--foreground-color);
 }
 .cart-item-info {
   display: flex;
@@ -71,7 +68,7 @@ const totalPrice = computed(() => {
   gap: 10px;
 }
 .cart-item-price-container {
-  color: var(--neutral-40);
+  color: var(--text-color);
 }
 .cart-item-total-price-container {
   display: flex;
@@ -98,7 +95,7 @@ const totalPrice = computed(() => {
 }
 .cart-item-qtd-select-title {
   font-size: 0.6rem;
-  color: var(--neutral-40);
+  color: var(--text-color);
 }
 .cart-item-qtd-select-container {
   display: flex;

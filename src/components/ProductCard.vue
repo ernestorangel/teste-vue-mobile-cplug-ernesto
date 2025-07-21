@@ -71,7 +71,7 @@ function addToCart() {
   flex-direction: column;
   /* gap: 20px; */
   /* border: 1px solid var(--second-blue-light); */
-  background-color: var(--second-blue-main);
+  background-color: var(--foreground-color);
   border-radius: 8px;
   box-shadow:
     0 1px 3px rgba(0, 0, 0, 0.12),
@@ -137,15 +137,14 @@ function addToCart() {
   width: 100%;
   padding: 10px;
   border-radius: 8px;
-  background-color: var(--second-blue-dark);
-  border: 1px solid var(--second-blue-light);
+  background-color: var(--foreground-color);
+  border: 1px solid var(--border-color);
   font-size: 1rem;
   cursor: pointer;
   transition: ease-in-out;
   transition-duration: 0.15s;
 }
 .add-to-cart-button:hover {
-  background-color: var(--second-blue-light);
-  border: 1px solid var(--second-blue-light);
+  background-color: var(--background-color);
 }
 </style>

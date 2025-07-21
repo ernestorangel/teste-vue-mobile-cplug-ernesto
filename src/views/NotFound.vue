@@ -1,7 +1,7 @@
 <template>
-  <div class="nav-menu">
-    <div>404. Pagina não encontrada.</div>
-    <button @click="backToHome">Voltar Home</button>
+  <div class="not-found-page-container">
+    <div class="not-found-page-message">Pagina não encontrada.</div>
+    <button @click="backToHome" class="button-secondary">Voltar para o início</button>
   </div>
 </template>
 
@@ -9,14 +9,23 @@
 import { useRouter } from 'vue-router';
 const router = useRouter();
 function backToHome() {
-  router.push('home');
+  router.push('/home');
 }
 </script>
 
 <style scoped>
-.nav-menu {
+.not-found-page-container {
+  width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+}
+.not-found-page-message {
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--text-color);
 }
 </style>
