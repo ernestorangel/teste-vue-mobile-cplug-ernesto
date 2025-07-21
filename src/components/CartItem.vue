@@ -20,7 +20,9 @@
       </div>
     </div>
     <div class="cart-item-actions">
-      <button @click="removeFromCart" class="button-text-cancel">Remover</button>
+      <button @click="removeFromCart" class="button-text-cancel" data-testid="remove-btn">
+        Remover
+      </button>
       <div class="cart-item-qtd-select-wrapper">
         <div class="cart-item-qtd-select-title">Quantidade</div>
         <div class="cart-item-qtd-select-container">
@@ -28,6 +30,7 @@
             id="cart-item-qtd-increment"
             class="cart-item-qtd-select-enabled"
             @click="incrementItemQuantity"
+            data-testid="plus-btn"
           >
             <Icon shape="plus" size="xs" color="#ffffff" />
           </button>
@@ -44,6 +47,7 @@
             ]"
             :disabled="isDecrementDisabled"
             @click="decrementItemQuantity"
+            data-testid="minus-btn"
           >
             <Icon shape="minus" size="xs" color="#ffffff" />
           </button>

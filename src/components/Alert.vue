@@ -13,7 +13,13 @@
         >
           {{ alert.message }}
         </div>
-        <button @click="closeAlert(alert.id)" class="alert-close-button">OK</button>
+        <button
+          data-testid="alert-close-btn"
+          @click="closeAlert(alert.id)"
+          class="alert-close-button"
+        >
+          OK
+        </button>
       </div>
     </TransitionGroup>
   </div>

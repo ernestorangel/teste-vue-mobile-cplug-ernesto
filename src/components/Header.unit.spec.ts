@@ -55,4 +55,21 @@ describe('Header (Unit)', () => {
     expect(routerPushSpy).toHaveBeenCalledTimes(1);
     expect(routerPushSpy).toHaveBeenCalledWith('/home');
   });
+
+  it('Should change ref state on input focus', async () => {
+    const router = await setupRouter();
+
+    const wrapper = mount(Header, {
+      global: {
+        plugins: [router],
+      },
+    });
+
+    const input = wrapper.find('[data-testid="search-input"]');
+    await input.trigger('focusin');
+    expect(wrapper.find('.product-grid-search').classes()).toContain('focused');
+
+    await input.trigger('focusout');
+    expect(wrapper.find('.product-grid-search').classes()).not.toContain('focused');
+  });
 });

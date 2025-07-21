@@ -31,6 +31,52 @@ describe('ProductCard (Unit)', () => {
     expect(img.attributes('src')).toBe(fallbackImg);
   });
 
+  it('should set finalSrc to product image on load', async () => {
+    const imgMock: any = {
+      set src(_src: string) {
+        setTimeout(() => {
+          if (typeof this.onload === 'function') this.onload();
+        }, 0);
+      },
+      onload: undefined,
+      onerror: undefined,
+    };
+    vi.stubGlobal('Image', function () {
+      return imgMock;
+    });
+
+    const wrapper = mount(ProductCard, {
+      props: { ...product },
+    });
+
+    await new Promise((resolve) => setTimeout(resolve, 10));
+    const img = wrapper.find('[data-testid="product-img"]');
+    expect(img.attributes('src')).toBe(product.image);
+  });
+
+  it('should set finalSrc to fallback image on error', async () => {
+    const imgMock: any = {
+      set src(_src: string) {
+        setTimeout(() => {
+          if (typeof this.onerror === 'function') this.onerror();
+        }, 0);
+      },
+      onload: undefined,
+      onerror: undefined,
+    };
+    vi.stubGlobal('Image', function () {
+      return imgMock;
+    });
+
+    const wrapper = mount(ProductCard, {
+      props: { ...product },
+    });
+
+    await new Promise((resolve) => setTimeout(resolve, 10));
+    const img = wrapper.find('[data-testid="product-img"]');
+    expect(img.attributes('src')).toBe(fallbackImg);
+  });
+
   it('should call add item store function on add to cart button click', async () => {
     const pinia = createPinia();
     const cart = useCartStore(pinia);
