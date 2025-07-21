@@ -1,10 +1,24 @@
 import { defineStore } from 'pinia';
-import type { CartItem } from '../../types';
-import { ref } from 'vue';
+import type { CartItem, Coupon } from '../../types';
+import { ref, computed } from 'vue';
 import { useAlertStore } from './alert';
+import { useCouponStore } from './coupon';
 
 export const useCartStore = defineStore('cart', () => {
   const items = ref<Array<CartItem>>([]);
+  const coupon = ref<Coupon | undefined>(undefined);
+
+  const total = computed(() => {
+    return getTotal();
+  });
+
+  const netTotal = computed(() => {
+    return getNetTotal();
+  });
+
+  const discount = computed(() => {
+    return total.value - netTotal.value;
+  });
 
   function getItem(itemId: number) {
     return items.value.find((item) => item.productId === itemId);
@@ -42,18 +56,41 @@ export const useCartStore = defineStore('cart', () => {
     return items.value.reduce((acc: number, item: CartItem) => acc + item.quantity * item.price, 0);
   }
 
+  function getNetTotal() {
+    return total.value - total.value * (coupon.value?.discount || 0);
+  }
+
   function deleteAll() {
     items.value = [];
   }
 
+  function applyCoupon(name: string) {
+    console.log('applyCoupon(name): ', name);
+    if (!name) return;
+    coupon.value = useCouponStore().getCoupon(name);
+    useAlertStore().showAlert('success', 'Cupom aplicado.');
+  }
+
+  function removeCoupon() {
+    coupon.value = undefined;
+    useAlertStore().showAlert('error', 'Cupom removido.');
+  }
+
   return {
     items,
+    coupon,
+    total,
+    netTotal,
+    discount,
     addItem,
     removeItem,
     incrementItemQuantity,
     decrementItemQuantity,
     getItemQuantity,
     getTotal,
+    getNetTotal,
     deleteAll,
+    applyCoupon,
+    removeCoupon,
   };
 });

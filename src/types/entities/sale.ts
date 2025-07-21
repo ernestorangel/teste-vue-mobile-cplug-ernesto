@@ -5,4 +5,7 @@ export interface Sale {
   total: number;
   date: Date;
   status: 'completed';
+  coupon?: string | undefined;
+  discount?: number | undefined;
+  netTotal: number;
 }

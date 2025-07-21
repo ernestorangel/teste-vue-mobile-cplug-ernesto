@@ -22,9 +22,11 @@ import Alert from './components/Alert.vue';
   align-items: center;
 }
 
-.v-enter-active,
+.v-enter-active {
+  transition: opacity 0.5s ease;
+}
 .v-leave-active {
-  transition: opacity 0.2s ease;
+  transition: opacity 0s ease;
 }
 
 .v-enter-from,
