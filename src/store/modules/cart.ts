@@ -72,7 +72,6 @@ export const useCartStore = defineStore('cart', () => {
 
   function removeCoupon() {
     coupon.value = undefined;
-    useAlertStore().showAlert('error', 'Cupom removido.');
   }
 
   return {

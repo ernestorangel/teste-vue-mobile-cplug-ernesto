@@ -161,7 +161,10 @@ function checkAndApplyCoupon() {
 }
 
 function clearCoupon() {
-  if (appliedCoupon.value) cartStore.removeCoupon();
+  if (appliedCoupon.value) {
+    cartStore.removeCoupon();
+    alertStore.showAlert('error', 'Cupom removido');
+  }
   coupon.value = undefined;
   isCouponInputVisible.value = false;
 }
@@ -175,17 +178,16 @@ function checkout() {
     appliedCoupon.value
   );
   if (saleId) router.push(`success/${saleId}`);
-  resetPageData();
+  cartStore.deleteAll();
+  productsStore.search('');
+  if (appliedCoupon.value) cartStore.removeCoupon();
+  coupon.value = undefined;
+  isCouponInputVisible.value = false;
 }
 
 function clearCart() {
   cartStore.deleteAll();
   alertStore.showAlert('error', 'Seu carrinho está vazio');
-}
-function resetPageData() {
-  cartStore.deleteAll();
-  productsStore.search('');
-  clearCoupon();
 }
 </script>
 
