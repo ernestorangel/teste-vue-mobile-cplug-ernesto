@@ -158,7 +158,6 @@ function newSale() {
   border: 1px solid var(--border-color);
   background-color: var(--foreground-color);
   border-radius: 8px;
-  margin-bottom: 60px;
 }
 
 .sale-items-container {
@@ -246,7 +245,6 @@ function newSale() {
   }
   .sale-details-container {
     width: 90%;
-    margin-bottom: 60px;
   }
   .sale-success-actions {
     position: static;
