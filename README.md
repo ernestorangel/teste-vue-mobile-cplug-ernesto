@@ -19,7 +19,7 @@ Project developed by [Ernesto Rangel](https://ernestorangel.dev) as a tech chall
 - Product listing and shopping cart
 - Checkout flow with success and error feedback
 - Alert system for user notifications
-- Responsive layout for desktop
+- Responsive layout for desktop and mobile
 - PWA support (installable, offline-ready)
 - Automatic dark/light mode based on browser or system preference
 - Unit tests with coverage
