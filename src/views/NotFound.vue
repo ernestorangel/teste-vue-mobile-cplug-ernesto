@@ -1,7 +1,7 @@
 <template>
   <div class="not-found-page-container">
     <div class="not-found-page-message">Pagina não encontrada.</div>
-    <button @click="backToHome" class="button-secondary">Voltar para o início</button>
+    <button @click="backToHome" class="button-secondary">Início</button>
   </div>
 </template>
 

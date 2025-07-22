@@ -1,7 +1,7 @@
 <template>
   <div class="product-grid-header">
     <div class="product-grid-header-title-container">
-      <button data-testid="back-btn" @click="backToHome" class="button-secondary">Voltar</button>
+      <button data-testid="back-btn" @click="backToHome" class="button-secondary">Início</button>
       <div class="product-grid-header-title">Produtos</div>
     </div>
     <div class="product-grid-search" :class="{ focused: isSearchInputFocused }">
@@ -57,6 +57,7 @@ function searchProduct() {
 function backToHome() {
   router.push('/home');
   useCartStore().deleteAll();
+  useProductsStore().search('');
 }
 </script>
 

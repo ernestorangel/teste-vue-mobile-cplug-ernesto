@@ -38,7 +38,7 @@
       </div>
     </div>
     <div class="sale-success-actions">
-      <button @click="backToHome" class="button-secondary">Voltar Home</button>
+      <button @click="backToHome" class="button-secondary">Início</button>
       <button @click="newSale" class="button-primary">Nova Venda</button>
     </div>
   </div>
