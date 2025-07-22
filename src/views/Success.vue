@@ -47,25 +47,32 @@
 <script setup lang="ts">
 import CheckoutItem from '../components/CheckoutItem.vue';
 import { useRouter, useRoute } from 'vue-router';
-import { computed } from 'vue';
+import { ref, computed, onMounted } from 'vue';
 import { useSalesStore } from '../store/modules/sales';
 import {
   formatToCustomDateString,
   formatToCustomTimeString,
   formatMoneyFromNumber,
 } from '../utils/helpers';
+import type { Sale } from '../types';
 
 const router = useRouter();
 const route = useRoute();
+
+const saleDetails = ref<Sale>();
+
+onMounted(async () => {
+  saleDetails.value = await useSalesStore().getSale(Number(route.params?.saleId));
+});
 
 const saleId = computed(() => {
   return Number(route.params?.saleId);
 });
 
-const saleDetails = computed(() => {
-  if (saleId.value) return useSalesStore().getSale(saleId.value);
-  else return undefined;
-});
+// const saleDetails = computed(() => {
+//   if (saleId.value) return useSalesStore().getSale(saleId.value);
+//   else return undefined;
+// });
 
 const saleDate = computed(() => {
   return saleDetails.value?.date;

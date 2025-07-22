@@ -169,8 +169,8 @@ function clearCoupon() {
   isCouponInputVisible.value = false;
 }
 
-function checkout() {
-  const saleId = salesStore.createSale(
+async function checkout() {
+  const saleId = await salesStore.createSale(
     cart.value,
     cartTotal.value,
     cartNetTotal.value,
